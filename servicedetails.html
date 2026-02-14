@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Service Details - GrowwRelocate">
+    <title>Service Details - GrowwRelocate</title>
+    
+    <link rel="icon" type="image/x-icon" href="Images/growwpark_logo.ico">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1E293B',
+                        secondary: '#F59E0B',
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        
+        :root {
+            --primary-color: #1E293B; 
+            --secondary-color: #F59E0B; 
+            --bg-color: #FFFFFF;
+            --bg-alt: #F8FAFC;
+            --card-bg: #FFFFFF;    
+            --text-main: #4B5563;
+            --text-heading: #0F172A;
+            --navbar-bg: #1E293B;
+            --border-color: #E2E8F0;
+        }
+        
+        [data-theme="dark"] {
+            --primary-color: #0F172A;      
+            --secondary-color: #F59E0B;     
+            --bg-color: #020617;
+            --bg-alt: #0F172A;
+            --card-bg: #1E293B;
+            --text-main: #CBD5E1;
+            --text-heading: #F8FAFC;
+            --navbar-bg: #000000;
+            --border-color: #334155;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { overflow-x: hidden; width: 100%; max-width: 100vw; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        h1, h2, h3, h4, h5, h6 { color: var(--text-heading); }
+        p { color: var(--text-main); }
+        
+        /* Utility Classes */
+        .bg-theme-main { background-color: var(--bg-color); }
+        .bg-theme-alt { background-color: var(--bg-alt); }
+        .bg-card-theme { background-color: var(--card-bg); }
+        .text-heading-theme { color: var(--text-heading) !important; }
+        .text-body-theme { color: var(--text-main) !important; }
+        .border-theme { border-color: var(--border-color) !important; }
+        .bg-primary { background-color: var(--primary-color) !important; }
+        .bg-secondary { background-color: var(--secondary-color) !important; }
+        .text-primary { color: var(--primary-color) !important; }
+        .text-secondary { color: var(--secondary-color) !important; }
+
+        /* Navbar & Dropdowns */
+        .navbar-container {
+            background-color: var(--navbar-bg);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .nav-link {
+            color: #E2E8F0; padding: 8px 12px; transition: all 0.3s ease;
+            position: relative; display: flex; align-items: center; gap: 4px;
+            font-weight: 500; white-space: nowrap; cursor: pointer; font-size: 0.9rem;
+        }
+        .nav-link:hover { color: var(--secondary-color); }
+        .nav-link.active { color: var(--secondary-color); font-weight: 600; }
+        
+        .dropdown { position: relative; }
+        .dropdown-menu {
+            position: absolute; top: 100%; left: 0;
+            background-color: var(--navbar-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px;
+            min-width: 200px; opacity: 0; visibility: hidden;
+            transform: translateY(10px); transition: all 0.3s ease;
+            z-index: 1000; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+        .dropdown:hover .dropdown-menu, .dropdown.active .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+        .dropdown-item {
+            display: block; padding: 12px 20px; color: #E2E8F0;
+            transition: all 0.3s ease; border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.9rem;
+        }
+        .dropdown-item:hover { background-color: rgba(245, 158, 11, 0.1); color: var(--secondary-color); padding-left: 25px; }
+        .dropdown-item.active { color: var(--secondary-color); background-color: rgba(245, 158, 11, 0.05); }
+        .dropdown-arrow { font-size: 0.7rem; transition: transform 0.3s ease; }
+        .dropdown:hover .dropdown-arrow { transform: rotate(180deg); }
+        
+        /* Mobile Menu */
+        .mobile-menu { transform: translateX(-100%); transition: transform 0.3s ease; }
+        .mobile-menu.active { transform: translateX(0); }
+        .mobile-dropdown-content {
+            max-height: 0; overflow: hidden; transition: max-height 0.3s ease;
+            padding-left: 20px; background-color: rgba(0,0,0,0.2); border-radius: 8px;
+        }
+        .mobile-dropdown-content.active { max-height: 500px; margin: 5px 0; }
+        .mobile-link.active { color: var(--secondary-color) !important; padding-left: 10px; }
+
+        /* Animations */
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .fade-in-up { animation: fadeInUp 0.6s ease-out; }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #FFFFFF, var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Check list styles */
+        .check-list li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 12px;
+            color: var(--text-main);
+        }
+        .check-list li::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            top: 2px;
+            color: var(--secondary-color);
+        }
+
+        /* Responsive */
+        @media (max-width: 1279px) {
+            .desktop-nav, .navbar-right-desktop { display: none !important; }
+            .mobile-menu-button { display: flex !important; }
+        }
+        @media (min-width: 1280px) {
+            .desktop-nav, .navbar-right-desktop { display: flex !important; }
+            .mobile-menu-button { display: none !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav id="navbar" class="navbar-container py-3 fixed top-0 w-full z-[1000]">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between">
+                
+                <a href="index.html" class="flex items-center gap-3 no-underline transition-transform duration-300 hover:scale-105">
+                    <div class="w-10 h-10 md:w-12 md:h-12 bg-secondary rounded-full flex items-center justify-center font-extrabold text-lg md:text-xl text-primary shrink-0 shadow-lg">
+                        GR
+                    </div>
+                    <div>
+                        <div class="text-xl md:text-2xl font-bold text-white">GrowwRelocate</div>
+                        <span class="text-[10px] md:text-xs text-secondary block -mt-1 font-medium">Seamless Moves</span>
+                    </div>
+                </a>
+                
+                <div class="desktop-nav items-center space-x-0 lg:space-x-1">
+                    <div class="dropdown" id="home-dropdown">
+                        <div class="nav-link" onclick="toggleDesktopDropdown('home-dropdown')">
+                            Home <i class="fas fa-chevron-down dropdown-arrow"></i>
+                        </div>
+                        <div class="dropdown-menu">
+                            <a href="index.html" class="dropdown-item">Home 1</a>
+                            <a href="home2.html" class="dropdown-item">Home 2</a>
+                        </div>
+                    </div>
+                    <a href="about.html" class="nav-link">About</a>
+                    <a href="services.html" class="nav-link active">Services</a>
+                    <a href="blog.html" class="nav-link">Blog</a>
+                    <a href="pricing.html" class="nav-link">Pricing</a>
+                    <a href="faq.html" class="nav-link">FAQ</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
+                    <div class="dropdown" id="dashboard-dropdown">
+                        <div class="nav-link" onclick="toggleDesktopDropdown('dashboard-dropdown')">
+                            Dashboard <i class="fas fa-chevron-down dropdown-arrow"></i>
+                        </div>
+                        <div class="dropdown-menu">
+                            <a href="user-dashboard.html" class="dropdown-item"><i class="fas fa-user mr-2"></i> User</a>
+                            <a href="admin-dashboard.html" class="dropdown-item"><i class="fas fa-user-shield mr-2"></i> Admin</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="navbar-right-desktop flex items-center gap-2 lg:gap-3">
+                    <button class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center text-white transition-all duration-300 hover:bg-secondary hover:text-primary shrink-0 border-0 cursor-pointer" id="desktop-theme-toggle-btn" title="Toggle Dark/Light Mode">
+                        <i class="fas fa-moon" id="desktop-theme-icon"></i>
+                    </button>
+                    <button class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center text-white transition-all duration-300 hover:bg-secondary hover:text-primary shrink-0 border-0 cursor-pointer" id="desktop-rtl-toggle-btn" title="Toggle RTL">
+                        <i class="fas fa-language"></i>
+                    </button>
+                    <a href="login.html" class="bg-secondary text-primary px-5 py-2.5 rounded-lg font-bold text-sm transition-all hover:bg-white hover:text-primary shadow-lg hover:shadow-xl flex items-center gap-2">
+                        <i class="fas fa-user"></i> Login
+                    </a>
+                </div>
+                
+                <button id="mobile-menu-btn" class="hidden text-white text-xl cursor-pointer p-2 bg-white/10 rounded-lg w-10 h-10 items-center justify-center mobile-menu-button">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+    
+    <div id="mobile-menu" class="mobile-menu fixed top-0 left-0 w-full h-full bg-[#1E293B] z-[9999] overflow-y-auto">
+        <div class="p-6">
+            <div class="flex justify-between items-center mb-8">
+                <a href="index.html" class="flex items-center gap-3">
+                    <div class="w-12 h-12 bg-secondary rounded-full flex items-center justify-center font-extrabold text-xl text-primary">GR</div>
+                    <div>
+                        <span class="text-2xl font-bold text-white">GrowwRelocate</span>
+                        <span class="text-xs text-secondary block -mt-1">Seamless Moves</span>
+                    </div>
+                </a>
+                <div class="flex items-center gap-3">
+                    <a href="login.html" class="bg-secondary text-primary w-10 h-10 rounded-full flex items-center justify-center font-bold transition-all hover:bg-white" title="Login">
+                        <i class="fas fa-user"></i>
+                    </a>
+                    <button id="close-mobile-menu" class="text-white text-3xl transition-transform active:scale-90"><i class="fas fa-times"></i></button>
+                </div>
+            </div>
+            
+            <div class="space-y-2">
+                <div>
+                    <button class="flex items-center justify-between w-full text-white text-lg font-medium py-3 no-underline cursor-pointer border-0 bg-transparent" onclick="toggleMobileDropdown('home-mobile')">
+                        <span><i class="fas fa-home mr-2 text-secondary"></i> Home</span>
+                        <i class="fas fa-chevron-down dropdown-arrow text-gray-400"></i>
+                    </button>
+                    <div id="home-mobile" class="mobile-dropdown-content">
+                        <a href="index.html" class="block text-gray-300 py-2.5 mobile-link transition-all duration-300 hover:text-secondary hover:pl-2.5">Home 1</a>
+                        <a href="home2.html" class="block text-gray-300 py-2.5 mobile-link transition-all duration-300 hover:text-secondary hover:pl-2.5">Home 2</a>
+                    </div>
+                </div>
+                <a href="about.html" class="flex items-center justify-between w-full text-white text-lg font-medium py-3 no-underline mobile-link"><span><i class="fas fa-info-circle mr-2 text-secondary"></i> About</span></a>
+                <a href="services.html" class="flex items-center justify-between w-full text-white text-lg font-medium py-3 no-underline mobile-link active"><span><i class="fas fa-truck mr-2 text-secondary"></i> Services</span></a>
+                <a href="blog.html" class="flex items-center justify-between w-full text-white text-lg font-medium py-3 no-underline mobile-link"><span><i class="fas fa-rss mr-2 text-secondary"></i> Blog</span></a>
+                <a href="pricing.html" class="flex items-center justify-between w-full text-white text-lg font-medium py-3 no-underline mobile-link"><span><i class="fas fa-tags mr-2 text-secondary"></i> Pricing</span></a>
+                <a href="faq.html" class="flex items-center justify-between w-full text-white text-lg font-medium py-3 no-underline mobile-link"><span><i class="fas fa-question-circle mr-2 text-secondary"></i> FAQ</span></a>
+                <a href="contact.html" class="flex items-center justify-between w-full text-white text-lg font-medium py-3 no-underline mobile-link"><span><i class="fas fa-envelope mr-2 text-secondary"></i> Contact</span></a>
+                <div>
+                    <button class="flex items-center justify-between w-full text-white text-lg font-medium py-3 no-underline cursor-pointer border-0 bg-transparent" onclick="toggleMobileDropdown('dashboard-mobile')">
+                        <span><i class="fas fa-tachometer-alt mr-2 text-secondary"></i> Dashboard</span>
+                        <i class="fas fa-chevron-down dropdown-arrow text-gray-400"></i>
+                    </button>
+                    <div id="dashboard-mobile" class="mobile-dropdown-content">
+                        <a href="user-dashboard.html" class="block text-gray-300 py-2.5 mobile-link transition-all duration-300 hover:text-secondary hover:pl-2.5">User Dashboard</a>
+                        <a href="admin-dashboard.html" class="block text-gray-300 py-2.5 mobile-link transition-all duration-300 hover:text-secondary hover:pl-2.5">Admin Dashboard</a>
+                    </div>
+                </div>
+
+                <div class="pt-6 mt-6 border-t border-gray-700">
+                    <p class="text-gray-400 text-sm font-semibold mb-4">SETTINGS</p>
+                    <div class="bg-white/5 rounded-lg p-3 flex items-center justify-between cursor-pointer transition-all duration-300 hover:bg-white/10 mb-3" id="mobile-theme-toggle">
+                        <div class="flex items-center"><i class="fas fa-moon text-white text-lg mr-3" id="mobile-theme-icon"></i><span class="text-white font-medium">Dark Mode</span></div>
+                        <div class="w-12 h-6 bg-gray-600 rounded-full relative"><div class="theme-switch-dot w-5 h-5 bg-white rounded-full absolute top-0.5 left-0.5 transition-all"></div></div>
+                    </div>
+                    <div class="bg-white/5 rounded-lg p-3 flex items-center justify-between cursor-pointer transition-all duration-300 hover:bg-white/10 mb-3" id="mobile-rtl-toggle">
+                        <div class="flex items-center"><i class="fas fa-language text-white text-lg mr-3"></i><span class="text-white font-medium">RTL Mode</span></div>
+                        <div class="w-12 h-6 bg-gray-600 rounded-full relative"><div class="rtl-switch-dot w-5 h-5 bg-white rounded-full absolute top-0.5 left-0.5 transition-all"></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="min-h-screen flex items-center justify-center bg-primary relative overflow-hidden pt-20">
+        <div class="absolute top-0 right-0 w-full h-full z-0">
+            <div class="absolute inset-0 bg-black/50 z-10"></div>
+            <img src="Images/serviceherosection.jpg" alt="Services Hero" class="w-full h-full object-cover">
+        </div>
+        <div class="container mx-auto px-4 text-center relative z-20 fade-in-up">
+            <span class="text-secondary font-bold tracking-wider uppercase mb-4 block" id="service-subtitle">Our Services</span>
+            <h1 class="text-4xl md:text-6xl font-black text-white mb-6" id="service-title">
+                Service <span class="gradient-text">Details</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto leading-relaxed" id="service-description-hero">
+                Loading service details...
+            </p>
+        </div>
+    </section>
+
+    <section class="py-16 md:py-24 bg-theme-main">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row gap-12">
+                
+                <div class="lg:w-2/3 fade-in-up">
+                    <img id="service-image" src="" alt="Service" class="w-full h-80 md:h-[500px] object-cover rounded-3xl shadow-xl mb-10 border-4 border-white/10 hidden">
+                    
+                    <div class="bg-card-theme p-8 rounded-2xl border border-theme shadow-lg mb-8">
+                        <h2 class="text-2xl font-bold mb-4 text-heading-theme">Overview</h2>
+                        <p class="text-body-theme leading-relaxed mb-6" id="service-full-desc"></p>
+                        
+                        <h3 class="text-xl font-bold mb-4 text-heading-theme">Key Features</h3>
+                        <ul class="check-list grid md:grid-cols-2 gap-2" id="service-features">
+                        </ul>
+                    </div>
+
+                    <div class="bg-card-theme p-8 rounded-2xl border border-theme shadow-lg">
+                        <h2 class="text-2xl font-bold mb-4 text-heading-theme">Why Choose This Service?</h2>
+                        <div class="space-y-4" id="service-reasons">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:w-1/3">
+                    <div class="sticky top-28 space-y-8">
+                        <div class="bg-primary text-white p-8 rounded-3xl shadow-xl relative overflow-hidden">
+                            <div class="absolute top-0 right-0 w-32 h-32 bg-secondary opacity-10 rounded-bl-full"></div>
+                            <h3 class="text-2xl font-bold mb-2 text-white">Get A Quote</h3>
+                            <p class="text-gray-300 text-sm mb-6">Pricing starts from <span class="text-secondary font-bold text-lg" id="service-price">...</span></p>
+                            
+                            <form class="space-y-4">
+                                <input type="text" placeholder="Your Name" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-secondary">
+                                <input type="tel" placeholder="Phone Number" class="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-secondary">
+                                <button type="submit" class="w-full bg-secondary text-primary font-bold py-3 rounded-lg hover:bg-white hover:text-primary transition">Request Call Back</button>
+                            </form>
+                        </div>
+
+                        <div class="bg-card-theme p-8 rounded-3xl border border-theme shadow-lg text-center">
+                            <div class="w-16 h-16 bg-theme-alt rounded-full flex items-center justify-center mx-auto mb-4 text-primary text-2xl">
+                                <i class="fas fa-headset"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-heading-theme mb-2">Need Help?</h3>
+                            <p class="text-body-theme text-sm mb-4">Our experts are available 24/7 to answer your questions.</p>
+                            <a href="tel:+1234567890" class="text-secondary font-bold text-xl block hover:underline">+1 (555) 123-4567</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 md:py-24 bg-theme-alt">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <span class="text-secondary font-bold tracking-wider uppercase text-sm">Our Process</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-heading-theme mt-2">How It Works</h2>
+                <p class="text-body-theme mt-4 max-w-2xl mx-auto">We've simplified the moving process to ensure a stress-free experience from start to finish.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative">
+                <div class="hidden lg:block absolute top-8 left-0 w-full h-0.5 bg-gray-300 dark:bg-gray-700 -z-0"></div>
+
+                <div class="relative bg-card-theme p-6 rounded-2xl border border-theme shadow-lg text-center group hover:-translate-y-2 transition-transform duration-300 z-10">
+                    <div class="w-16 h-16 mx-auto bg-secondary text-white rounded-full flex items-center justify-center text-2xl font-bold mb-6 border-4 border-white dark:border-gray-800 shadow-md">1</div>
+                    <h3 class="text-xl font-bold text-heading-theme mb-3">Request Quote</h3>
+                    <p class="text-body-theme text-sm leading-relaxed">Fill out our simple form or call us to get a free, transparent estimate tailored to your needs.</p>
+                </div>
+
+                <div class="relative bg-card-theme p-6 rounded-2xl border border-theme shadow-lg text-center group hover:-translate-y-2 transition-transform duration-300 z-10">
+                    <div class="w-16 h-16 mx-auto bg-primary text-white rounded-full flex items-center justify-center text-2xl font-bold mb-6 border-4 border-white dark:border-gray-800 shadow-md">2</div>
+                    <h3 class="text-xl font-bold text-heading-theme mb-3">Plan & Schedule</h3>
+                    <p class="text-body-theme text-sm leading-relaxed">We coordinate the logistics, provide packing materials, and set a schedule that works for you.</p>
+                </div>
+
+                <div class="relative bg-card-theme p-6 rounded-2xl border border-theme shadow-lg text-center group hover:-translate-y-2 transition-transform duration-300 z-10">
+                    <div class="w-16 h-16 mx-auto bg-secondary text-white rounded-full flex items-center justify-center text-2xl font-bold mb-6 border-4 border-white dark:border-gray-800 shadow-md">3</div>
+                    <h3 class="text-xl font-bold text-heading-theme mb-3">We Move You</h3>
+                    <p class="text-body-theme text-sm leading-relaxed">Our expert team handles the packing, loading, and safe transport of your belongings.</p>
+                </div>
+
+                <div class="relative bg-card-theme p-6 rounded-2xl border border-theme shadow-lg text-center group hover:-translate-y-2 transition-transform duration-300 z-10">
+                    <div class="w-16 h-16 mx-auto bg-primary text-white rounded-full flex items-center justify-center text-2xl font-bold mb-6 border-4 border-white dark:border-gray-800 shadow-md">4</div>
+                    <h3 class="text-xl font-bold text-heading-theme mb-3">Settle In</h3>
+                    <p class="text-body-theme text-sm leading-relaxed">We unload and place furniture exactly where you want it, so you can enjoy your new home.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="py-16 md:py-20 bg-theme-main">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <span class="text-secondary font-bold tracking-wider uppercase text-sm">Testimonials</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-heading-theme mt-2">What Our Customers Say</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-card-theme p-8 rounded-2xl shadow-lg border border-theme transition-transform duration-300 hover:-translate-y-2">
+                    <div class="flex text-secondary mb-4 gap-1">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-body-theme italic mb-6 leading-relaxed">"The local moving team was incredible. They wrapped all my furniture and didn't scratch a single wall. Highly recommended!"</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full flex items-center justify-center bg-theme-alt border border-theme">
+                            <i class="fas fa-user text-gray-400"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-heading-theme">Sarah Jenkins</h4>
+                            <span class="text-xs text-body-theme opacity-70">Local Move</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-card-theme p-8 rounded-2xl shadow-lg border border-theme transition-transform duration-300 hover:-translate-y-2">
+                    <div class="flex text-secondary mb-4 gap-1">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="text-body-theme italic mb-6 leading-relaxed">"Moving our office was a logistical nightmare until GrowwRelocate stepped in. They worked over the weekend so we lost zero business hours."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full flex items-center justify-center bg-theme-alt border border-theme">
+                            <i class="fas fa-user text-gray-400"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-heading-theme">Michael Chen</h4>
+                            <span class="text-xs text-body-theme opacity-70">Corporate Relocation</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-card-theme p-8 rounded-2xl shadow-lg border border-theme transition-transform duration-300 hover:-translate-y-2">
+                    <div class="flex text-secondary mb-4 gap-1">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-body-theme italic mb-6 leading-relaxed">"Storage facilities are top notch. Climate controlled and very secure. I left my antique furniture there for 6 months with no issues."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full flex items-center justify-center bg-theme-alt border border-theme">
+                            <i class="fas fa-user text-gray-400"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-heading-theme">Emily Rodriguez</h4>
+                            <span class="text-xs text-body-theme opacity-70">Storage Service</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-primary text-white relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-64 h-64 bg-secondary opacity-5 rounded-bl-full pointer-events-none"></div>
+        <div class="absolute bottom-0 left-0 w-64 h-64 bg-secondary opacity-5 rounded-tr-full pointer-events-none"></div>
+
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div class="space-y-2">
+                    <div class="text-4xl md:text-5xl font-black text-secondary">5k+</div>
+                    <p class="text-sm md:text-base text-gray-300 uppercase tracking-wider font-semibold">Moves Completed</p>
+                </div>
+                <div class="space-y-2">
+                    <div class="text-4xl md:text-5xl font-black text-secondary">98%</div>
+                    <p class="text-sm md:text-base text-gray-300 uppercase tracking-wider font-semibold">Client Satisfaction</p>
+                </div>
+                <div class="space-y-2">
+                    <div class="text-4xl md:text-5xl font-black text-secondary">15+</div>
+                    <p class="text-sm md:text-base text-gray-300 uppercase tracking-wider font-semibold">Years Experience</p>
+                </div>
+                <div class="space-y-2">
+                    <div class="text-4xl md:text-5xl font-black text-secondary">50+</div>
+                    <p class="text-sm md:text-base text-gray-300 uppercase tracking-wider font-semibold">Cities Covered</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+ <footer class="bg-primary text-white py-12 md:py-16">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-12">
+                <div>
+                    <a href="index.html" class="flex items-center gap-3 mb-6 no-underline">
+                        <div class="w-12 h-12 bg-secondary rounded-full flex items-center justify-center font-extrabold text-xl text-primary shrink-0">
+                            GR
+                        </div>
+                        <div>
+                            <span class="text-xl md:text-2xl font-bold text-white block">GrowwRelocate</span>
+                            <span class="text-xs text-secondary block -mt-1 font-semibold">Seamless Moves</span>
+                        </div>
+                    </a>
+                    <p class="opacity-80 mb-6 text-sm md:text-base text-gray-300">
+                        Making relocation easy, reliable, and stress-free for families and businesses.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-white/10 text-white rounded-full flex items-center justify-center hover:bg-secondary hover:text-primary transition"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 bg-white/10 text-white rounded-full flex items-center justify-center hover:bg-secondary hover:text-primary transition"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="w-10 h-10 bg-white/10 text-white rounded-full flex items-center justify-center hover:bg-secondary hover:text-primary transition"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg md:text-xl font-bold mb-6 text-secondary">Quick Links</h3>
+                    <ul class="space-y-3 text-sm md:text-base">
+                        <li><a href="index.html" class="text-white hover:text-secondary transition font-medium">Home</a></li>
+                        <li><a href="about.html" class="text-white hover:text-secondary transition font-medium">About</a></li>
+                        <li><a href="services.html" class="text-white hover:text-secondary transition font-medium">Services</a></li>
+                        <li><a href="contact.html" class="text-white hover:text-secondary transition font-medium">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg md:text-xl font-bold mb-6 text-secondary">Support</h3>
+                    <ul class="space-y-3 text-sm md:text-base">
+                        <li><a href="faq.html" class="text-gray-300 hover:text-secondary transition">FAQs</a></li>
+                        <li><a href="contact.html" class="text-gray-300 hover:text-secondary transition">Contact Us</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-secondary transition">Claims Policy</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-secondary transition">Moving Guide</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg md:text-xl font-bold mb-6 text-secondary">Get Estimate</h3>
+                    <p class="opacity-80 mb-4 text-sm md:text-base text-gray-300">Enter your email to start a free quote.</p>
+                    <form class="space-y-3">
+                        <input type="email" placeholder="Your email" class="w-full px-4 py-3 rounded-lg text-primary bg-white focus:outline-none focus:ring-2 focus:ring-secondary text-sm md:text-base" required>
+                        <button type="submit" class="w-full bg-secondary text-primary px-4 py-3 rounded-lg font-bold hover:bg-white hover:text-primary transition text-sm md:text-base">
+                            Start Quote
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-sm md:text-base text-white">
+                <p class="mb-4 md:mb-0 text-white font-medium">&copy; 2026 GrowwRelocate. All rights reserved.</p>
+                <div class="flex flex-wrap justify-center gap-4 md:gap-6">
+                    <a href="#" class="hover:text-secondary transition text-gray-300">Privacy Policy</a>
+                    <a href="#" class="hover:text-secondary transition text-gray-300">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <button id="scroll-top" class="fixed bottom-6 right-6 md:bottom-8 md:right-8 w-10 h-10 md:w-12 md:h-12 bg-secondary text-primary rounded-full shadow-lg hidden hover:bg-white transition z-50"><i class="fas fa-arrow-up"></i></button>
+
+    <script>
+        // 1. DATA OBJECT (UPDATED WITH LOCAL IMAGE PATHS)
+        const servicesData = {
+            "local-moving": {
+                title: "Local Moving Services",
+                subtitle: "Fast & Reliable City Moves",
+                descHero: "Moving across town? Our local experts know every street and shortcut to get you there safely and quickly.",
+                image: "Images/Local Moving.jpg", 
+                fullDesc: "Our local moving service is designed to be as stress-free as possible. Whether you are moving from a studio apartment or a 5-bedroom house, our team handles your belongings with the utmost care. We provide padding for furniture, floor protection, and specialized equipment for heavy items.",
+                features: ["Same-day service available", "Furniture disassembly/reassembly", "No extra charge for stairs (up to 2nd floor)", "Clean, fully equipped trucks", "Professional, uniformed staff", "Basic liability insurance included"],
+                reasons: [
+                    { title: "Neighborhood Experts", text: "We know the local parking regulations and building codes." },
+                    { title: "Transparent Pricing", text: "Hourly rates with no hidden fees." }
+                ],
+                price: "$350"
+            },
+            "long-distance": {
+                title: "Long Distance Moving",
+                subtitle: "Nationwide Relocation Experts",
+                descHero: "Crossing state lines? We provide secure, GPS-tracked transport for your peace of mind.",
+                image: "Images/Long Distance.jpg", 
+                fullDesc: "Long-distance moves require meticulous planning. Our dedicated coordinators work with you to create a schedule that fits your life. Your items are inventoried, tagged, and loaded onto our air-ride suspension trucks to ensure they arrive in perfect condition.",
+                features: ["Guaranteed delivery windows", "Real-time GPS shipment tracking", "Direct routes available", "Inventory management system", "Climate-controlled trucks", "Dedicated move coordinator"],
+                reasons: [
+                    { title: "Safety First", text: "Drivers comply with all DOT safety regulations." },
+                    { title: "Flat-Rate Quotes", text: "Binding estimates based on weight and distance." }
+                ],
+                price: "$1,500"
+            },
+            "corporate": {
+                title: "Corporate Relocation",
+                subtitle: "Business Moving Solutions",
+                descHero: "Minimize downtime with our efficient office moving services tailored for businesses.",
+                image: "Images/corparte moving.jpg", 
+                fullDesc: "We understand that time is money. Our corporate relocation team works around your business hours—nights and weekends included—to ensure a seamless transition. We handle everything from IT server racks to employee workstations.",
+                features: ["IT & Server relocation specialists", "Cubicle disassembly & installation", "Employee relocation packages", "After-hours & weekend service", "Confidential document handling", "Project management support"],
+                reasons: [
+                    { title: "Zero Downtime", text: "We get you back in business instantly." },
+                    { title: "Secure Handling", text: "Strict protocols for sensitive equipment." }
+                ],
+                price: "$800"
+            },
+            "packing": {
+                title: "Packing & Unpacking",
+                subtitle: "White Glove Service",
+                descHero: "Don't lift a finger. Let our pros pack your entire home securely and efficiently.",
+                image: "Images/Packing Services.jpg", 
+                fullDesc: "Packing is often the most tedious part of moving. Our team uses high-quality materials to wrap every dish, book, and picture frame. We label every box by room and content, making unpacking a breeze.",
+                features: ["Full or partial packing options", "High-quality boxes & bubble wrap", "Special crating for art/antiques", "Unpacking & debris removal", "Wardrobe boxes for clothes", "Labeling & inventory"],
+                reasons: [
+                    { title: "Protection", text: "Professional packing reduces risk of damage." },
+                    { title: "Convenience", text: "Save days or weeks of your time." }
+                ],
+                price: "$250"
+            },
+            "storage": {
+                title: "Storage Solutions",
+                subtitle: "Secure & Climate Controlled",
+                descHero: "Short-term or long-term storage options for your furniture and boxes.",
+                image: "Images/Storage solution.jpg", 
+                fullDesc: "Whether your new home isn't ready yet or you are downsizing, our secure storage facilities are the answer. Your items are placed in sealed wooden vaults within our climate-controlled warehouse, protected from dust, pests, and humidity.",
+                features: ["24/7 Video Surveillance", "Climate-controlled environment", "Short & long-term leases", "Door-to-door pickup & delivery", "Pad-wrapped protection", "Fire suppression systems"],
+                reasons: [
+                    { title: "Flexibility", text: "Store for a week or a year." },
+                    { title: "Security", text: "Only authorized personnel have access." }
+                ],
+                price: "$100/mo"
+            },
+            "vehicle": {
+                title: "Vehicle Transport",
+                subtitle: "Car & Boat Shipping",
+                descHero: "Safe transport for your vehicles across the state or country.",
+                image: "Images/Vehicle Transport.jpg", 
+                fullDesc: "Don't add miles to your car. Let us ship it for you. We offer both open-carrier transport (economical) and enclosed transport (maximum protection) for luxury or vintage vehicles. We also handle motorcycles and boats.",
+                features: ["Open & Enclosed carriers", "Door-to-door delivery", "Full insurance coverage", "Luxury vehicle specialists", "Motorcycle & Boat shipping", "Condition report on pickup"],
+                reasons: [
+                    { title: "Save Mileage", text: "Keep your vehicle's value high." },
+                    { title: "Convenience", text: "Fly to your destination while we drive." }
+                ],
+                price: "$600"
+            }
+        };
+
+        // 2. LOGIC TO POPULATE PAGE
+        document.addEventListener('DOMContentLoaded', () => {
+            // Get URL param (e.g. ?service=local-moving)
+            const urlParams = new URLSearchParams(window.location.search);
+            const serviceKey = urlParams.get('service') || 'local-moving'; // Default to local-moving
+
+            const data = servicesData[serviceKey] || servicesData['local-moving'];
+
+            // Populate Elements
+            document.getElementById('service-title').innerHTML = data.title.split(' ').slice(0, -1).join(' ') + ' <span class="gradient-text">' + data.title.split(' ').slice(-1) + '</span>';
+            document.getElementById('service-subtitle').textContent = data.subtitle;
+            document.getElementById('service-description-hero').textContent = data.descHero;
+            
+            const img = document.getElementById('service-image');
+            img.src = data.image;
+            img.classList.remove('hidden');
+
+            document.getElementById('service-full-desc').textContent = data.fullDesc;
+            document.getElementById('service-price').textContent = data.price;
+
+            // Populate Features List
+            const featuresList = document.getElementById('service-features');
+            featuresList.innerHTML = data.features.map(f => `<li>${f}</li>`).join('');
+
+            // Populate Reasons
+            const reasonsContainer = document.getElementById('service-reasons');
+            reasonsContainer.innerHTML = data.reasons.map(r => `
+                <div class="flex gap-4">
+                    <div class="mt-1"><i class="fas fa-check-circle text-secondary text-xl"></i></div>
+                    <div>
+                        <h4 class="font-bold text-heading-theme">${r.title}</h4>
+                        <p class="text-sm text-body-theme opacity-80">${r.text}</p>
+                    </div>
+                </div>
+            `).join('');
+        });
+
+        // Toggle Logic
+        const desktopThemeToggleBtn = document.getElementById('desktop-theme-toggle-btn');
+        const desktopThemeIcon = document.getElementById('desktop-theme-icon');
+        const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+        const mobileThemeIcon = document.getElementById('mobile-theme-icon');
+        const htmlElement = document.documentElement;
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        htmlElement.setAttribute('data-theme', currentTheme);
+        if (currentTheme === 'dark') {
+            htmlElement.classList.add('dark');
+            if (desktopThemeIcon) desktopThemeIcon.classList.replace('fa-moon', 'fa-sun');
+            if (mobileThemeIcon) {
+                mobileThemeIcon.classList.replace('fa-moon', 'fa-sun');
+                const dot = document.querySelector('.theme-switch-dot');
+                if(dot) { dot.style.transform = 'translateX(24px)'; dot.parentElement.style.backgroundColor = '#F59E0B'; }
+            }
+        }
+        function toggleTheme() {
+            const isDark = htmlElement.getAttribute('data-theme') === 'dark';
+            const newTheme = isDark ? 'light' : 'dark';
+            htmlElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            if (newTheme === 'dark') { htmlElement.classList.add('dark'); } 
+            else { htmlElement.classList.remove('dark'); }
+            if (desktopThemeIcon) desktopThemeIcon.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+            if (mobileThemeIcon) {
+                mobileThemeIcon.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+                const dot = document.querySelector('.theme-switch-dot');
+                const bg = dot.parentElement;
+                if (newTheme === 'dark') { dot.style.transform = 'translateX(24px)'; bg.style.backgroundColor = '#F59E0B'; } 
+                else { dot.style.transform = 'translateX(0)'; bg.style.backgroundColor = '#6b7280'; }
+            }
+        }
+        if (desktopThemeToggleBtn) desktopThemeToggleBtn.addEventListener('click', toggleTheme);
+        if (mobileThemeToggle) mobileThemeToggle.addEventListener('click', toggleTheme);
+        
+        // RTL Logic
+        const desktopRtlToggleBtn = document.getElementById('desktop-rtl-toggle-btn');
+        const mobileRtlToggle = document.getElementById('mobile-rtl-toggle');
+        const currentDir = localStorage.getItem('direction') || 'ltr';
+        htmlElement.setAttribute('dir', currentDir);
+        function toggleRTL() {
+            const direction = htmlElement.getAttribute('dir') === 'rtl' ? 'ltr' : 'rtl';
+            htmlElement.setAttribute('dir', direction);
+            localStorage.setItem('direction', direction);
+            if (mobileRtlToggle) {
+                const dot = document.querySelector('.rtl-switch-dot');
+                const bg = dot.parentElement;
+                if(dot) {
+                    if (direction === 'rtl') { dot.style.transform = 'translateX(24px)'; bg.style.backgroundColor = '#F59E0B'; } 
+                    else { dot.style.transform = 'translateX(0)'; bg.style.backgroundColor = '#6b7280'; }
+                }
+            }
+        }
+        if (desktopRtlToggleBtn) desktopRtlToggleBtn.addEventListener('click', toggleRTL);
+        if (mobileRtlToggle) mobileRtlToggle.addEventListener('click', toggleRTL);
+
+        // Menus
+        function toggleDesktopDropdown(id) {
+            document.querySelectorAll('.dropdown').forEach(d => { if(d.id !== id) d.classList.remove('active'); });
+            document.getElementById(id).classList.toggle('active');
+        }
+        function toggleMobileDropdown(id) { document.getElementById(id).classList.toggle('active'); }
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.dropdown')) { document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active')); }
+        });
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMobileMenu = document.getElementById('close-mobile-menu');
+        if(mobileMenuBtn) mobileMenuBtn.addEventListener('click', () => mobileMenu.classList.add('active'));
+        if(closeMobileMenu) closeMobileMenu.addEventListener('click', () => mobileMenu.classList.remove('active'));
+        
+        // Scroll Top
+        const scrollTopBtn = document.getElementById('scroll-top');
+        window.addEventListener('scroll', () => scrollTopBtn.classList.toggle('hidden', window.scrollY <= 300));
+        scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+        window.addEventListener('resize', () => { if(window.innerWidth >= 1280) mobileMenu.classList.remove('active'); });
+    </script>
+</body>
+</html>

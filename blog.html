@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Moving Tips, Packing Guides, and Relocation Advice from GrowwRelocate.">
+    <title>Blog - GrowwRelocate</title>
+    
+    <link rel="icon" type="image/x-icon" href="Images/growwpark_logo.ico">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1E293B',
+                        secondary: '#F59E0B',
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        
+        :root {
+            /* --- Shared Theme Variables --- */
+            --primary-color: #1E293B; 
+            --secondary-color: #F59E0B; 
+            --bg-color: #FFFFFF;
+            --bg-alt: #F8FAFC;
+            --card-bg: #FFFFFF;    
+            --text-main: #4B5563;
+            --text-heading: #0F172A;
+            --navbar-bg: #1E293B;
+            --border-color: #E2E8F0;
+        }
+        
+        [data-theme="dark"] {
+            --primary-color: #0F172A;      
+            --secondary-color: #F59E0B;     
+            --bg-color: #020617;
+            --bg-alt: #0F172A;
+            --card-bg: #1E293B;
+            --text-main: #CBD5E1;
+            --text-heading: #F8FAFC;
+            --navbar-bg: #000000;
+            --border-color: #334155;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { overflow-x: hidden; width: 100%; max-width: 100vw; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        h1, h2, h3, h4, h5, h6 { color: var(--text-heading); }
+        p { color: var(--text-main); }
+        
+        /* Utility Classes */
+        .bg-theme-main { background-color: var(--bg-color); }
+        .bg-theme-alt { background-color: var(--bg-alt); }
+        .bg-card-theme { background-color: var(--card-bg); }
+        .text-heading-theme { color: var(--text-heading) !important; }
+        .text-body-theme { color: var(--text-main) !important; }
+        .border-theme { border-color: var(--border-color) !important; }
+        
+        .bg-primary { background-color: var(--primary-color); }
+        .bg-secondary { background-color: var(--secondary-color); }
+        .text-primary { color: var(--primary-color); }
+        .text-secondary { color: var(--secondary-color); }
+
+        /* Navbar & Dropdowns */
+        .navbar-container {
+            background-color: var(--navbar-bg);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .nav-link {
+            color: #E2E8F0; padding: 8px 12px; transition: all 0.3s ease;
+            position: relative; display: flex; align-items: center; gap: 4px;
+            font-weight: 500; white-space: nowrap; cursor: pointer; font-size: 0.9rem;
+        }
+        .nav-link:hover { color: var(--secondary-color); }
+        .nav-link.active { color: var(--secondary-color); font-weight: 600; }
+        
+        .dropdown { position: relative; }
+        .dropdown-menu {
+            position: absolute; top: 100%; left: 0;
+            background-color: var(--navbar-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px;
+            min-width: 200px; opacity: 0; visibility: hidden;
+            transform: translateY(10px); transition: all 0.3s ease;
+            z-index: 1000; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+        .dropdown:hover .dropdown-menu, .dropdown.active .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+        .dropdown-item {
+            display: block; padding: 12px 20px; color: #E2E8F0;
+            transition: all 0.3s ease; border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.9rem;
+        }
+        .dropdown-item:hover { background-color: rgba(245, 158, 11, 0.1); color: var(--secondary-color); padding-left: 25px; }
+        .dropdown-item.active { color: var(--secondary-color); background-color: rgba(245, 158, 11, 0.05); }
+        .dropdown-arrow { font-size: 0.7rem; transition: transform 0.3s ease; }
+        .dropdown:hover .dropdown-arrow { transform: rotate(180deg); }
+        
+        /* Mobile Menu */
+        .mobile-menu { transform: translateX(-100%); transition: transform 0.3s ease; }
+        .mobile-menu.active { transform: translateX(0); }
+        .mobile-dropdown-content {
+            max-height: 0; overflow: hidden; transition: max-height 0.3s ease;
+            padding-left: 20px; background-color: rgba(0,0,0,0.2); border-radius: 8px;
+        }
+        .mobile-dropdown-content.active { max-height: 500px; margin: 5px 0; }
+        .mobile-link.active { color: var(--secondary-color) !important; padding-left: 10px; }
+
+        /* Animations */
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .fade-in-up { animation: fadeInUp 0.6s ease-out; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
+        .pulse { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #FFFFFF, var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Blog Specific Styles */
+        .blog-card-img {
+            transition: transform 0.5s ease;
+        }
+        .blog-card:hover .blog-card-img {
+            transform: scale(1.05);
+        }
+
+        /* Responsive */
+        @media (max-width: 1279px) {
+            .desktop-nav, .navbar-right-desktop { display: none !important; }
+            .mobile-menu-button { display: flex !important; }
+        }
+        @media (min-width: 1280px) {
+            .desktop-nav, .navbar-right-desktop { display: flex !important; }
+            .mobile-menu-button { display: none !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav id="navbar" class="navbar-container py-3 fixed top-0 w-full z-[1000]">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between">
+                
+                <a href="index.html" class="flex items-center gap-3 no-underline transition-transform duration-300 hover:scale-105">
+                    <div class="w-10 h-10 md:w-12 md:h-12 bg-secondary rounded-full flex items-center justify-center font-extrabold text-lg md:text-xl text-primary shrink-0 shadow-lg">
+                        GR
+                    </div>
+                    <div>
+                        <div class="text-xl md:text-2xl font-bold text-white">GrowwRelocate</div>
+                        <span class="text-[10px] md:text-xs text-secondary block -mt-1 font-medium">Seamless Moves</span>
+                    </div>
+                </a>
+                
+                <div class="desktop-nav items-center space-x-0 lg:space-x-1">
+                    <div class="dropdown" id="home-dropdown">
+                        <div class="nav-link" onclick="toggleDesktopDropdown('home-dropdown')">
+                            Home <i class="fas fa-chevron-down dropdown-arrow"></i>
+                        </div>
+                        <div class="dropdown-menu">
+                            <a href="index.html" class="dropdown-item">Home 1</a>
+                            <a href="home2.html" class="dropdown-item">Home 2</a>
+                        </div>
+                    </div>
+                    <a href="about.html" class="nav-link">About</a>
+                    <a href="services.html" class="nav-link">Services</a>
+                    <a href="blog.html" class="nav-link active">Blog</a>
+                    <a href="pricing.html" class="nav-link">Pricing</a>
+                    <a href="faq.html" class="nav-link">FAQ</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
+                    <div class="dropdown" id="dashboard-dropdown">
+                        <div class="nav-link" onclick="toggleDesktopDropdown('dashboard-dropdown')">
+                            Dashboard <i class="fas fa-chevron-down dropdown-arrow"></i>
+                        </div>
+                        <div class="dropdown-menu">
+                            <a href="user-dashboard.html" class="dropdown-item"><i class="fas fa-user mr-2"></i> User</a>
+                            <a href="admin-dashboard.html" class="dropdown-item"><i class="fas fa-user-shield mr-2"></i> Admin</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="navbar-right-desktop flex items-center gap-2 lg:gap-3">
+                    <button class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center text-white transition-all duration-300 hover:bg-secondary hover:text-primary shrink-0 border-0 cursor-pointer" id="desktop-theme-toggle-btn" title="Toggle Dark/Light Mode">
+                        <i class="fas fa-moon" id="desktop-theme-icon"></i>
+                    </button>
+                    <button class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center text-white transition-all duration-300 hover:bg-secondary hover:text-primary shrink-0 border-0 cursor-pointer" id="desktop-rtl-toggle-btn" title="Toggle RTL">
+                        <i class="fas fa-language"></i>
+                    </button>
+                    <a href="login.html" class="bg-secondary text-primary px-5 py-2.5 rounded-lg font-bold text-sm transition-all hover:bg-white hover:text-primary shadow-lg hover:shadow-xl flex items-center gap-2">
+                        <i class="fas fa-user"></i> Login
+                    </a>
+                </div>
+                
+                <button id="mobile-menu-btn" class="hidden text-white text-xl cursor-pointer p-2 bg-white/10 rounded-lg w-10 h-10 items-center justify-center mobile-menu-button">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+    
+    <div id="mobile-menu" class="mobile-menu fixed top-0 left-0 w-full h-full bg-[#1E293B] z-[9999] overflow-y-auto">
+        <div class="p-6">
+            <div class="flex justify-between items-center mb-8">
+                <a href="index.html" class="flex items-center gap-3">
+                    <div class="w-12 h-12 bg-secondary rounded-full flex items-center justify-center font-extrabold text-xl text-primary">GR</div>
+                    <div>
+                        <span class="text-2xl font-bold text-white">GrowwRelocate</span>
+                        <span class="text-xs text-secondary block -mt-1">Seamless Moves</span>
+                    </div>
+                </a>
+                <div class="flex items-center gap-3">
+                    <a href="login.html" class="bg-secondary text-primary w-10 h-10 rounded-full flex items-center justify-center font-bold transition-all hover:bg-white" title="Login">
+                        <i class="fas fa-user"></i>
+                    </a>
+                    <button id="close-mobile-menu" class="text-white text-3xl transition-transform active:scale-90"><i class="fas fa-times"></i></button>
+                </div>
+            </div>
+            
+            <div class="space-y-2">
+                <div>
+                    <button class="flex items-center justify-between w-full text-white text-lg font-medium py-3 no-underline cursor-pointer border-0 bg-transparent" onclick="toggleMobileDropdown('home-mobile')">
+                        <span><i class="fas fa-home mr-2 text-secondary"></i> Home</span>
+                        <i class="fas fa-chevron-down dropdown-arrow text-gray-400"></i>
+                    </button>
+                    <div id="home-mobile" class="mobile-dropdown-content">
+                        <a href="index.html" class="block text-gray-300 py-2.5 mobile-link transition-all duration-300 hover:text-secondary hover:pl-2.5">Home 1</a>
+                        <a href="home2.html" class="block text-gray-300 py-2.5 mobile-link transition-all duration-300 hover:text-secondary hover:pl-2.5">Home 2</a>
+                    </div>
+                </div>
+                <a href="about.html" class="flex items-center justify-between w-full text-white text-lg font-medium py-3 no-underline mobile-link"><span><i class="fas fa-info-circle mr-2 text-secondary"></i> About</span></a>
+                <a href="services.html" class="flex items-center justify-between w-full text-white text-lg font-medium py-3 no-underline mobile-link"><span><i class="fas fa-truck mr-2 text-secondary"></i> Services</span></a>
+                <a href="blog.html" class="flex items-center justify-between w-full text-white text-lg font-medium py-3 no-underline mobile-link active"><span><i class="fas fa-rss mr-2 text-secondary"></i> Blog</span></a>
+                <a href="pricing.html" class="flex items-center justify-between w-full text-white text-lg font-medium py-3 no-underline mobile-link"><span><i class="fas fa-tags mr-2 text-secondary"></i> Pricing</span></a>
+                <a href="faq.html" class="flex items-center justify-between w-full text-white text-lg font-medium py-3 no-underline mobile-link"><span><i class="fas fa-question-circle mr-2 text-secondary"></i> FAQ</span></a>
+                <a href="contact.html" class="flex items-center justify-between w-full text-white text-lg font-medium py-3 no-underline mobile-link"><span><i class="fas fa-envelope mr-2 text-secondary"></i> Contact</span></a>
+                <div>
+                    <button class="flex items-center justify-between w-full text-white text-lg font-medium py-3 no-underline cursor-pointer border-0 bg-transparent" onclick="toggleMobileDropdown('dashboard-mobile')">
+                        <span><i class="fas fa-tachometer-alt mr-2 text-secondary"></i> Dashboard</span>
+                        <i class="fas fa-chevron-down dropdown-arrow text-gray-400"></i>
+                    </button>
+                    <div id="dashboard-mobile" class="mobile-dropdown-content">
+                        <a href="user-dashboard.html" class="block text-gray-300 py-2.5 mobile-link transition-all duration-300 hover:text-secondary hover:pl-2.5">User Dashboard</a>
+                        <a href="admin-dashboard.html" class="block text-gray-300 py-2.5 mobile-link transition-all duration-300 hover:text-secondary hover:pl-2.5">Admin Dashboard</a>
+                    </div>
+                </div>
+
+                <div class="pt-6 mt-6 border-t border-gray-700">
+                    <p class="text-gray-400 text-sm font-semibold mb-4">SETTINGS</p>
+                    <div class="bg-white/5 rounded-lg p-3 flex items-center justify-between cursor-pointer transition-all duration-300 hover:bg-white/10 mb-3" id="mobile-theme-toggle">
+                        <div class="flex items-center"><i class="fas fa-moon text-white text-lg mr-3" id="mobile-theme-icon"></i><span class="text-white font-medium">Dark Mode</span></div>
+                        <div class="w-12 h-6 bg-gray-600 rounded-full relative"><div class="theme-switch-dot w-5 h-5 bg-white rounded-full absolute top-0.5 left-0.5 transition-all"></div></div>
+                    </div>
+                    <div class="bg-white/5 rounded-lg p-3 flex items-center justify-between cursor-pointer transition-all duration-300 hover:bg-white/10 mb-3" id="mobile-rtl-toggle">
+                        <div class="flex items-center"><i class="fas fa-language text-white text-lg mr-3"></i><span class="text-white font-medium">RTL Mode</span></div>
+                        <div class="w-12 h-6 bg-gray-600 rounded-full relative"><div class="rtl-switch-dot w-5 h-5 bg-white rounded-full absolute top-0.5 left-0.5 transition-all"></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="min-h-screen flex items-center justify-center bg-primary relative overflow-hidden pt-20">
+        <div class="absolute top-0 right-0 w-full h-full z-0">
+            <div class="absolute inset-0 bg-black/50 z-10"></div>
+            <img src="Images/blogherosection.jpg" alt="Blog background" class="w-full h-full object-cover">
+        </div>
+
+        <div class="container mx-auto px-4 text-center relative z-20 fade-in-up">
+            <span class="text-secondary font-bold tracking-wider uppercase mb-4 block">Moving Insights</span>
+            <h1 class="text-4xl md:text-6xl font-black text-white mb-6">Expert <span class="gradient-text">Relocation Tips</span></h1>
+            <p class="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
+                Guides, checklists, and expert advice to make your next move your best move.
+            </p>
+        </div>
+    </section>
+
+    <section class="py-16 bg-theme-alt border-b border-theme">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4 text-heading-theme">Helpful Tools & Resources</h2>
+                <p class="text-body-theme opacity-80">Downloadable assets to streamline your move.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-card-theme p-6 rounded-2xl border border-theme hover:border-secondary hover:shadow-lg transition-all group">
+                    <div class="w-12 h-12 bg-red-100 text-red-500 rounded-full flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-heading-theme mb-2">Box Label Templates</h3>
+                    <p class="text-sm text-body-theme opacity-70 mb-4">Color-coded printable labels for every room in your house.</p>
+                    <a href="#" class="text-secondary font-bold text-sm hover:underline">Download PDF <i class="fas fa-arrow-right ml-1"></i></a>
+                </div>
+
+                <div class="bg-card-theme p-6 rounded-2xl border border-theme hover:border-secondary hover:shadow-lg transition-all group">
+                    <div class="w-12 h-12 bg-blue-100 text-blue-500 rounded-full flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-envelope-open-text"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-heading-theme mb-2">Change of Address Kit</h3>
+                    <p class="text-sm text-body-theme opacity-70 mb-4">A complete list of everyone you need to notify before you move.</p>
+                    <a href="#" class="text-secondary font-bold text-sm hover:underline">View Checklist <i class="fas fa-arrow-right ml-1"></i></a>
+                </div>
+
+                <div class="bg-card-theme p-6 rounded-2xl border border-theme hover:border-secondary hover:shadow-lg transition-all group">
+                    <div class="w-12 h-12 bg-green-100 text-green-500 rounded-full flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-heading-theme mb-2">Moving Budget Sheet</h3>
+                    <p class="text-sm text-body-theme opacity-70 mb-4">Excel template to track expenses and stay on budget.</p>
+                    <a href="#" class="text-secondary font-bold text-sm hover:underline">Download XLS <i class="fas fa-arrow-right ml-1"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-theme-main">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row gap-12">
+                
+                <div class="lg:w-2/3">
+                    <h2 class="text-3xl font-bold mb-8 text-heading-theme border-b border-theme pb-4">Explore Topics</h2>
+                    
+                    <div id="blog-cards-container" class="grid md:grid-cols-2 gap-8">
+                        </div>
+
+                    <div class="mt-12 flex justify-center gap-2">
+                        <a href="#" class="w-10 h-10 flex items-center justify-center rounded-lg border border-theme bg-card-theme text-heading-theme hover:bg-secondary hover:text-primary transition-colors"><i class="fas fa-chevron-left"></i></a>
+                        <a href="#" class="w-10 h-10 flex items-center justify-center rounded-lg bg-secondary text-primary font-bold">1</a>
+                        <a href="#" class="w-10 h-10 flex items-center justify-center rounded-lg border border-theme bg-card-theme text-heading-theme hover:bg-secondary hover:text-primary transition-colors">2</a>
+                        <a href="#" class="w-10 h-10 flex items-center justify-center rounded-lg border border-theme bg-card-theme text-heading-theme hover:bg-secondary hover:text-primary transition-colors">3</a>
+                        <a href="#" class="w-10 h-10 flex items-center justify-center rounded-lg border border-theme bg-card-theme text-heading-theme hover:bg-secondary hover:text-primary transition-colors"><i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+
+                <aside class="lg:w-1/3 space-y-8">
+                    
+                    <div class="bg-card-theme p-6 rounded-2xl border border-theme shadow-sm">
+                        <form class="relative">
+                            <input type="text" placeholder="Search articles..." class="w-full bg-theme-alt border border-theme rounded-lg py-3 px-4 text-heading-theme focus:outline-none focus:ring-2 focus:ring-secondary">
+                            <button type="submit" class="absolute right-3 top-3 text-gray-400 hover:text-secondary"><i class="fas fa-search"></i></button>
+                        </form>
+                    </div>
+
+                    <div class="bg-card-theme p-6 rounded-2xl border border-theme shadow-sm">
+                        <h3 class="text-xl font-bold mb-4 text-heading-theme">Categories</h3>
+                        <ul class="space-y-3">
+                            <li><a href="#" class="flex justify-between items-center text-body-theme hover:text-secondary transition-colors"><span><i class="fas fa-truck mr-2 opacity-50"></i> Moving Tips</span> <span class="bg-theme-alt px-2 py-0.5 rounded text-xs">12</span></a></li>
+                            <li><a href="#" class="flex justify-between items-center text-body-theme hover:text-secondary transition-colors"><span><i class="fas fa-box-open mr-2 opacity-50"></i> Packing</span> <span class="bg-theme-alt px-2 py-0.5 rounded text-xs">8</span></a></li>
+                            <li><a href="#" class="flex justify-between items-center text-body-theme hover:text-secondary transition-colors"><span><i class="fas fa-tag mr-2 opacity-50"></i> Costs & Budget</span> <span class="bg-theme-alt px-2 py-0.5 rounded text-xs">5</span></a></li>
+                            <li><a href="#" class="flex justify-between items-center text-body-theme hover:text-secondary transition-colors"><span><i class="fas fa-city mr-2 opacity-50"></i> Corporate</span> <span class="bg-theme-alt px-2 py-0.5 rounded text-xs">4</span></a></li>
+                            <li><a href="#" class="flex justify-between items-center text-body-theme hover:text-secondary transition-colors"><span><i class="fas fa-clipboard-list mr-2 opacity-50"></i> Checklists</span> <span class="bg-theme-alt px-2 py-0.5 rounded text-xs">7</span></a></li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-card-theme p-6 rounded-2xl border border-theme shadow-sm">
+                        <h3 class="text-xl font-bold mb-4 text-heading-theme">Popular Posts</h3>
+                        <div class="space-y-4">
+                            <a href="#" class="block group border-b border-theme pb-3 last:border-0 last:pb-0">
+                                <h4 class="font-bold text-heading-theme text-sm leading-tight mb-1 group-hover:text-secondary transition-colors">Moving with Kids: A Survival Guide</h4>
+                                <span class="text-xs text-body-theme opacity-60"><i class="far fa-clock mr-1"></i> Sep 20, 2025</span>
+                            </a>
+                            <a href="#" class="block group border-b border-theme pb-3 last:border-0 last:pb-0">
+                                <h4 class="font-bold text-heading-theme text-sm leading-tight mb-1 group-hover:text-secondary transition-colors">5 Items You Should Never Pack</h4>
+                                <span class="text-xs text-body-theme opacity-60"><i class="far fa-clock mr-1"></i> Aug 14, 2025</span>
+                            </a>
+                            <a href="#" class="block group border-b border-theme pb-3 last:border-0 last:pb-0">
+                                <h4 class="font-bold text-heading-theme text-sm leading-tight mb-1 group-hover:text-secondary transition-colors">Change of Address Checklist</h4>
+                                <span class="text-xs text-body-theme opacity-60"><i class="far fa-clock mr-1"></i> Jul 30, 2025</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="bg-primary rounded-2xl p-6 text-center text-white relative overflow-hidden">
+                        <div class="relative z-10">
+                            <i class="fas fa-paper-plane text-4xl text-secondary mb-3"></i>
+                            <h3 class="text-xl font-bold mb-2 text-white">Join Our Newsletter</h3>
+                            <p class="text-sm text-gray-300 mb-4">Get moving tips and exclusive offers directly to your inbox.</p>
+                            <form class="space-y-2">
+                                <input type="email" placeholder="Your email address" class="w-full px-4 py-2 rounded-lg text-primary text-sm focus:outline-none">
+                                <button type="submit" class="w-full bg-secondary text-primary font-bold py-2 rounded-lg hover:bg-white transition-colors">Subscribe</button>
+                            </form>
+                        </div>
+                        <div class="absolute -bottom-10 -right-10 w-32 h-32 bg-secondary opacity-10 rounded-full"></div>
+                    </div>
+
+                </aside>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-theme-alt border-y border-theme">
+        <div class="container mx-auto px-4">
+            <div class="bg-gradient-to-r from-primary to-[#2C3E50] rounded-3xl p-8 md:p-12 text-white flex flex-col md:flex-row items-center justify-between gap-8 shadow-2xl relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-secondary rounded-full filter blur-[80px] opacity-20 pointer-events-none"></div>
+                
+                <div class="md:w-2/3 relative z-10">
+                    <span class="bg-secondary text-primary text-xs font-bold px-3 py-1 rounded-full mb-4 inline-block">Free Resources</span>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4 text-white">Printable Moving Checklists</h2>
+                    <p class="text-gray-300 text-lg mb-6">Stay on top of your move with our comprehensive PDF guides. Includes timelines, inventory sheets, and change-of-address forms.</p>
+                    <div class="flex flex-wrap gap-4">
+                        <div class="flex items-center gap-2 text-sm text-gray-300"><i class="fas fa-check-circle text-secondary"></i> 8-Week Timeline</div>
+                        <div class="flex items-center gap-2 text-sm text-gray-300"><i class="fas fa-check-circle text-secondary"></i> Box Labels</div>
+                        <div class="flex items-center gap-2 text-sm text-gray-300"><i class="fas fa-check-circle text-secondary"></i> Utility Setup</div>
+                    </div>
+                </div>
+                <div class="md:w-1/3 flex justify-center relative z-10">
+                    <button class="bg-secondary text-primary text-lg font-bold px-8 py-4 rounded-xl hover:bg-white hover:scale-105 transition-all shadow-lg flex items-center gap-3">
+                        <i class="fas fa-download"></i> Download All
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 md:py-24 bg-theme-main">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <span class="text-secondary font-bold tracking-wider uppercase text-sm">The Team</span>
+                <h2 class="text-3xl font-bold text-heading-theme">Meet Our Experts</h2>
+                <p class="text-body-theme opacity-80 mt-2">Real advice from real relocation professionals.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-card-theme p-6 rounded-2xl border border-theme shadow-lg text-center hover:shadow-xl transition-all duration-300">
+                    <img src="Images/Sarah Chen.jpg" alt="Sarah J." class="w-24 h-24 rounded-full mx-auto mb-4 object-cover border-4 border-secondary/20">
+                    <h3 class="text-xl font-bold text-heading-theme">Sarah Chen</h3>
+                    <p class="text-secondary font-medium text-sm mb-3">Packing Specialist</p>
+                    <p class="text-body-theme text-sm opacity-80">With 10 years in the field, Sarah knows how to pack everything from pianos to porcelain.</p>
+                </div>
+                <div class="bg-card-theme p-6 rounded-2xl border border-theme shadow-lg text-center hover:shadow-xl transition-all duration-300">
+                    <img src="Images/David Ross.jpg" alt="David R." class="w-24 h-24 rounded-full mx-auto mb-4 object-cover border-4 border-secondary/20">
+                    <h3 class="text-xl font-bold text-heading-theme">David Ross</h3>
+                    <p class="text-secondary font-medium text-sm mb-3">Logistics Manager</p>
+                    <p class="text-body-theme text-sm opacity-80">David ensures every truck arrives on time. He writes about route planning and safety.</p>
+                </div>
+                <div class="bg-card-theme p-6 rounded-2xl border border-theme shadow-lg text-center hover:shadow-xl transition-all duration-300">
+                    <img src="Images/Emma Wilson.jpg" alt="Emma W." class="w-24 h-24 rounded-full mx-auto mb-4 object-cover border-4 border-secondary/20">
+                    <h3 class="text-xl font-bold text-heading-theme">Emma Wilson</h3>
+                    <p class="text-secondary font-medium text-sm mb-3">Corporate Relocation</p>
+                    <p class="text-body-theme text-sm opacity-80">Specializing in office moves, Emma helps businesses transition with zero downtime.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-primary text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#F59E0B 1px, transparent 1px); background-size: 20px 20px;"></div>
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center mb-12">
+                <span class="text-secondary font-bold tracking-widest uppercase text-xs mb-2 block">Community</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-white">Reader Stories</h2>
+                <p class="text-gray-300 mt-2">How our guides helped real people move better.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white/5 backdrop-blur-sm p-8 rounded-2xl border border-white/10 hover:border-secondary/50 transition-colors">
+                    <div class="text-secondary text-2xl mb-4"><i class="fas fa-quote-left"></i></div>
+                    <p class="text-gray-300 italic mb-6">"The 8-week timeline saved my life! I usually procrastinate, but having a week-by-week plan made this move the least stressful one yet."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-gray-600 rounded-full flex items-center justify-center font-bold">JD</div>
+                        <div>
+                            <h4 class="font-bold text-sm">James Doe</h4>
+                            <span class="text-xs text-gray-400">Moved to Seattle</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white/5 backdrop-blur-sm p-8 rounded-2xl border border-white/10 hover:border-secondary/50 transition-colors">
+                    <div class="text-secondary text-2xl mb-4"><i class="fas fa-quote-left"></i></div>
+                    <p class="text-gray-300 italic mb-6">"I never knew about the 'Essentials Box' tip until I read the packing guide. Having coffee and toiletries ready on night one was a game changer."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-gray-600 rounded-full flex items-center justify-center font-bold">AS</div>
+                        <div>
+                            <h4 class="font-bold text-sm">Anna Smith</h4>
+                            <span class="text-xs text-gray-400">Local Move</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white/5 backdrop-blur-sm p-8 rounded-2xl border border-white/10 hover:border-secondary/50 transition-colors">
+                    <div class="text-secondary text-2xl mb-4"><i class="fas fa-quote-left"></i></div>
+                    <p class="text-gray-300 italic mb-6">"The cost analysis article helped me realize that hiring movers was actually cheaper than renting a truck + gas + pizza for friends. Best decision ever."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-gray-600 rounded-full flex items-center justify-center font-bold">MR</div>
+                        <div>
+                            <h4 class="font-bold text-sm">Mark Ross</h4>
+                            <span class="text-xs text-gray-400">Cross-Country</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+  <footer class="bg-primary text-white py-12 md:py-16">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-12">
+                <div>
+                    <a href="index.html" class="flex items-center gap-3 mb-6 no-underline">
+                        <div class="w-12 h-12 bg-secondary rounded-full flex items-center justify-center font-extrabold text-xl text-primary shrink-0">
+                            GR
+                        </div>
+                        <div>
+                            <span class="text-xl md:text-2xl font-bold text-white block">GrowwRelocate</span>
+                            <span class="text-xs text-secondary block -mt-1 font-semibold">Seamless Moves</span>
+                        </div>
+                    </a>
+                    <p class="opacity-80 mb-6 text-sm md:text-base text-gray-300">
+                        Making relocation easy, reliable, and stress-free for families and businesses.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-white/10 text-white rounded-full flex items-center justify-center hover:bg-secondary hover:text-primary transition"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 bg-white/10 text-white rounded-full flex items-center justify-center hover:bg-secondary hover:text-primary transition"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="w-10 h-10 bg-white/10 text-white rounded-full flex items-center justify-center hover:bg-secondary hover:text-primary transition"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg md:text-xl font-bold mb-6 text-secondary">Quick Links</h3>
+                    <ul class="space-y-3 text-sm md:text-base">
+                        <li><a href="index.html" class="text-white hover:text-secondary transition font-medium">Home</a></li>
+                        <li><a href="about.html" class="text-white hover:text-secondary transition font-medium">About</a></li>
+                        <li><a href="services.html" class="text-white hover:text-secondary transition font-medium">Services</a></li>
+                        <li><a href="contact.html" class="text-white hover:text-secondary transition font-medium">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg md:text-xl font-bold mb-6 text-secondary">Support</h3>
+                    <ul class="space-y-3 text-sm md:text-base">
+                        <li><a href="faq.html" class="text-gray-300 hover:text-secondary transition">FAQs</a></li>
+                        <li><a href="contact.html" class="text-gray-300 hover:text-secondary transition">Contact Us</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-secondary transition">Claims Policy</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-secondary transition">Moving Guide</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg md:text-xl font-bold mb-6 text-secondary">Get Estimate</h3>
+                    <p class="opacity-80 mb-4 text-sm md:text-base text-gray-300">Enter your email to start a free quote.</p>
+                    <form class="space-y-3">
+                        <input type="email" placeholder="Your email" class="w-full px-4 py-3 rounded-lg text-primary bg-white focus:outline-none focus:ring-2 focus:ring-secondary text-sm md:text-base" required>
+                        <button type="submit" class="w-full bg-secondary text-primary px-4 py-3 rounded-lg font-bold hover:bg-white hover:text-primary transition text-sm md:text-base">
+                            Start Quote
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-sm md:text-base text-white">
+                <p class="mb-4 md:mb-0 text-white font-medium">&copy; 2026 GrowwRelocate. All rights reserved.</p>
+                <div class="flex flex-wrap justify-center gap-4 md:gap-6">
+                    <a href="#" class="hover:text-secondary transition text-gray-300">Privacy Policy</a>
+                    <a href="#" class="hover:text-secondary transition text-gray-300">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <button id="scroll-top" class="fixed bottom-6 right-6 md:bottom-8 md:right-8 w-10 h-10 md:w-12 md:h-12 bg-secondary text-primary rounded-full shadow-lg hidden hover:bg-white transition z-50">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // --- DYNAMIC BLOG TOPIC CARDS LOGIC ---
+        // This is the array that controls the content and links of your cards.
+        // Make sure you have a file named 'blog-details.html' to handle these links.
+        const blogTopicsData = [
+            {
+                id: 'packing-guides',
+                icon: 'fas fa-box',
+                title: 'Packing Guides',
+                desc: 'Master the art of Packing. Learn how to pack fragile items, clothes, and heavy furniture safely and efficiently.',
+                link: 'blog-details.html?topic=packing' 
+            },
+            {
+                id: 'moving-checklists',
+                icon: 'fas fa-clipboard-check',
+                title: 'Moving Checklists',
+                desc: 'Don\'t forget a single thing. Access our comprehensive timelines for 8 weeks, 4 weeks, and moving day.',
+                link: 'blog-details.html?topic=checklists'
+            },
+            {
+                id: 'cost-analysis',
+                icon: 'fas fa-calculator',
+                title: 'Cost Analysis',
+                desc: 'Break down the hidden costs of moving. Compare DIY vs. Hiring Pros to see what fits your budget best.',
+                link: 'blog-details.html?topic=costs'
+            },
+            {
+                id: 'city-guides',
+                icon: 'fas fa-map-marked-alt',
+                title: 'City Guides',
+                desc: 'Relocating to a new city? Get the inside scoop on neighborhoods, schools, utilities, and local culture.',
+                link: 'blog-details.html?topic=cities'
+            },
+            {
+                id: 'corporate-tips',
+                icon: 'fas fa-building',
+                title: 'Corporate Tips',
+                desc: 'Expert advice for HR managers and employees to ensure a smooth, zero-downtime office transition.',
+                link: 'blog-details.html?topic=corporate'
+            },
+            {
+                id: 'decor-setup',
+                icon: 'fas fa-couch',
+                title: 'Decor & Setup',
+                desc: 'Turn your new house into a home faster. Interior design tips, unpacking strategies, and organization hacks.',
+                link: 'blog-details.html?topic=decor'
+            }
+        ];
+
+        function renderBlogCards() {
+            const container = document.getElementById('blog-cards-container');
+            if (!container) return;
+
+            // This map function creates the HTML for each card based on the data above.
+            // The onclick events on the DIV and the Anchor tag now point to the specific topic link.
+            container.innerHTML = blogTopicsData.map(topic => `
+                <div class="bg-card-theme p-8 rounded-2xl border border-theme shadow-lg flex flex-col items-start transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl group cursor-pointer fade-in-up" onclick="window.location.href='${topic.link}'">
+                    <div class="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center text-primary text-3xl mb-6 group-hover:bg-primary group-hover:text-white transition-colors duration-300">
+                        <i class="${topic.icon}"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 text-heading-theme">${topic.title}</h3>
+                    <p class="text-body-theme text-sm leading-relaxed opacity-80 mb-6 flex-grow">
+                        ${topic.desc}
+                    </p>
+                    <div class="flex gap-3 w-full mt-auto">
+                        <a href="${topic.link}" class="flex-1 px-4 py-3 border border-theme text-heading-theme rounded-lg text-center font-bold hover:bg-theme-alt transition-colors duration-300" onclick="event.stopPropagation()">Explore Topic</a>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Initialize Render on Load
+        document.addEventListener('DOMContentLoaded', renderBlogCards);
+
+
+        // --- STANDARD SITE LOGIC BELOW ---
+
+        // Toggle Logic
+        const desktopThemeToggleBtn = document.getElementById('desktop-theme-toggle-btn');
+        const desktopThemeIcon = document.getElementById('desktop-theme-icon');
+        const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+        const mobileThemeIcon = document.getElementById('mobile-theme-icon');
+        const htmlElement = document.documentElement;
+        
+        // Initialize Theme
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        htmlElement.setAttribute('data-theme', currentTheme);
+        if (currentTheme === 'dark') {
+            htmlElement.classList.add('dark');
+            if (desktopThemeIcon) desktopThemeIcon.classList.replace('fa-moon', 'fa-sun');
+            if (mobileThemeIcon) {
+                mobileThemeIcon.classList.replace('fa-moon', 'fa-sun');
+                const dot = document.querySelector('.theme-switch-dot');
+                if(dot) { dot.style.transform = 'translateX(24px)'; dot.parentElement.style.backgroundColor = '#F59E0B'; }
+            }
+        }
+
+        function toggleTheme() {
+            const isDark = htmlElement.getAttribute('data-theme') === 'dark';
+            const newTheme = isDark ? 'light' : 'dark';
+            htmlElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            if (newTheme === 'dark') { htmlElement.classList.add('dark'); } 
+            else { htmlElement.classList.remove('dark'); }
+            if (desktopThemeIcon) desktopThemeIcon.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+            if (mobileThemeIcon) {
+                mobileThemeIcon.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+                const dot = document.querySelector('.theme-switch-dot');
+                const bg = dot.parentElement;
+                if (newTheme === 'dark') { dot.style.transform = 'translateX(24px)'; bg.style.backgroundColor = '#F59E0B'; } 
+                else { dot.style.transform = 'translateX(0)'; bg.style.backgroundColor = '#6b7280'; }
+            }
+        }
+
+        if (desktopThemeToggleBtn) desktopThemeToggleBtn.addEventListener('click', toggleTheme);
+        if (mobileThemeToggle) mobileThemeToggle.addEventListener('click', toggleTheme);
+        
+        // RTL Logic
+        const desktopRtlToggleBtn = document.getElementById('desktop-rtl-toggle-btn');
+        const mobileRtlToggle = document.getElementById('mobile-rtl-toggle');
+        const currentDir = localStorage.getItem('direction') || 'ltr';
+        htmlElement.setAttribute('dir', currentDir);
+        if (currentDir === 'rtl' && mobileRtlToggle) {
+            const dot = document.querySelector('.rtl-switch-dot');
+            if(dot) { dot.style.transform = 'translateX(24px)'; dot.parentElement.style.backgroundColor = '#F59E0B'; }
+        }
+        function toggleRTL() {
+            const direction = htmlElement.getAttribute('dir') === 'rtl' ? 'ltr' : 'rtl';
+            htmlElement.setAttribute('dir', direction);
+            localStorage.setItem('direction', direction);
+            if (mobileRtlToggle) {
+                const dot = document.querySelector('.rtl-switch-dot');
+                const bg = dot.parentElement;
+                if (direction === 'rtl') { dot.style.transform = 'translateX(24px)'; bg.style.backgroundColor = '#F59E0B'; } 
+                else { dot.style.transform = 'translateX(0)'; bg.style.backgroundColor = '#6b7280'; }
+            }
+        }
+        if (desktopRtlToggleBtn) desktopRtlToggleBtn.addEventListener('click', toggleRTL);
+        if (mobileRtlToggle) mobileRtlToggle.addEventListener('click', toggleRTL);
+
+        // Menus
+        function toggleDesktopDropdown(id) {
+            document.querySelectorAll('.dropdown').forEach(d => { if(d.id !== id) d.classList.remove('active'); });
+            document.getElementById(id).classList.toggle('active');
+        }
+        function toggleMobileDropdown(id) { document.getElementById(id).classList.toggle('active'); }
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.dropdown')) { document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active')); }
+        });
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMobileMenu = document.getElementById('close-mobile-menu');
+        if(mobileMenuBtn) mobileMenuBtn.addEventListener('click', () => mobileMenu.classList.add('active'));
+        if(closeMobileMenu) closeMobileMenu.addEventListener('click', () => mobileMenu.classList.remove('active'));
+        
+        // Scroll Top
+        const scrollTopBtn = document.getElementById('scroll-top');
+        window.addEventListener('scroll', () => scrollTopBtn.classList.toggle('hidden', window.scrollY <= 300));
+        scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+        window.addEventListener('resize', () => { if(window.innerWidth >= 1280) mobileMenu.classList.remove('active'); });
+    </script>
+</body>
+</html>

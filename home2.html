@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="GrowwRelocate - Instant Quote & Stress-Free Moving Services.">
+    <title>GrowwRelocate - Get Your Instant Moving Quote</title>
+    
+    <link rel="icon" type="image/x-icon" href="Images/growwpark_logo.ico">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1E293B',
+                        secondary: '#F59E0B',
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        
+        :root {
+            /* --- Same Variables as Home 1 --- */
+            --primary-color: #1E293B; 
+            --secondary-color: #F59E0B; 
+            --bg-color: #FFFFFF;
+            --bg-alt: #F8FAFC;
+            --card-bg: #FFFFFF;    
+            --text-main: #4B5563;
+            --text-heading: #0F172A;
+            --navbar-bg: #1E293B;
+            --border-color: #E2E8F0;
+        }
+        
+        [data-theme="dark"] {
+            --primary-color: #0F172A;      
+            --secondary-color: #F59E0B;     
+            --bg-color: #020617;
+            --bg-alt: #0F172A;
+            --card-bg: #1E293B;
+            --text-main: #CBD5E1;
+            --text-heading: #F8FAFC;
+            --navbar-bg: #000000;
+            --border-color: #334155;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        html, body { overflow-x: hidden; width: 100%; max-width: 100vw; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        h1, h2, h3, h4, h5, h6 { color: var(--text-heading); }
+        p { color: var(--text-main); }
+        
+        /* Utility Classes */
+        .bg-theme-main { background-color: var(--bg-color); }
+        .bg-theme-alt { background-color: var(--bg-alt); }
+        .bg-card-theme { background-color: var(--card-bg); }
+        .text-heading-theme { color: var(--text-heading) !important; }
+        .text-body-theme { color: var(--text-main) !important; }
+        .border-theme { border-color: var(--border-color) !important; }
+        .bg-primary { background-color: var(--primary-color) !important; }
+        .bg-secondary { background-color: var(--secondary-color) !important; }
+        .text-primary { color: var(--primary-color) !important; }
+        .text-secondary { color: var(--secondary-color) !important; }
+
+        /* Navbar & Dropdowns (Identical to Home 1) */
+        .navbar-container {
+            background-color: var(--navbar-bg);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        
+        .nav-link {
+            color: #E2E8F0;
+            padding: 8px 12px;
+            transition: all 0.3s ease;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-weight: 500;
+            white-space: nowrap;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        .nav-link:hover { color: var(--secondary-color); }
+        .nav-link.active { color: var(--secondary-color); font-weight: 600; }
+        
+        .dropdown { position: relative; }
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--navbar-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+        .dropdown:hover .dropdown-menu, .dropdown.active .dropdown-menu {
+            opacity: 1; visibility: visible; transform: translateY(0);
+        }
+        .dropdown-item {
+            display: block;
+            padding: 12px 20px;
+            color: #E2E8F0;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.9rem;
+        }
+        .dropdown-item:hover {
+            background-color: rgba(245, 158, 11, 0.1);
+            color: var(--secondary-color);
+            padding-left: 25px;
+        }
+        .dropdown-item.active {
+            color: var(--secondary-color);
+            background-color: rgba(245, 158, 11, 0.05);
+        }
+        .dropdown-arrow { font-size: 0.7rem; transition: transform 0.3s ease; }
+        .dropdown:hover .dropdown-arrow { transform: rotate(180deg); }
+        
+        /* Mobile Menu */
+        .mobile-menu { transform: translateX(-100%); transition: transform 0.3s ease; }
+        .mobile-menu.active { transform: translateX(0); }
+        .mobile-dropdown-content {
+            max-height: 0; overflow: hidden; transition: max-height 0.3s ease;
+            padding-left: 20px; background-color: rgba(0,0,0,0.2); border-radius: 8px;
+        }
+        .mobile-dropdown-content.active { max-height: 500px; margin: 5px 0; }
+        .mobile-link.active { color: var(--secondary-color) !important; padding-left: 10px; }
+
+        /* Animations */
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .fade-in-up { animation: fadeInUp 0.6s ease-out; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
+        .pulse { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #FFFFFF, var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Timeline Styles */
+        .timeline-bar {
+            position: absolute; top: 20px; left: 0; width: 100%; height: 4px;
+            background: #E2E8F0; z-index: 1;
+        }
+        .timeline-progress {
+            position: absolute; top: 20px; left: 0; height: 4px;
+            background: var(--secondary-color); z-index: 2; width: 60%;
+        }
+        .timeline-step { z-index: 10; position: relative; }
+        
+        /* Responsive */
+        @media (max-width: 1279px) {
+            .desktop-nav, .navbar-right-desktop { display: none !important; }
+            .mobile-menu-button { display: flex !important; }
+        }
+        @media (min-width: 1280px) {
+            .desktop-nav, .navbar-right-desktop { display: flex !important; }
+            .mobile-menu-button { display: none !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav id="navbar" class="navbar-container py-3 fixed top-0 w-full z-[1000]">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between">
+                
+                <a href="index.html" class="flex items-center gap-3 no-underline transition-transform duration-300 hover:scale-105">
+                    <div class="w-10 h-10 md:w-12 md:h-12 bg-secondary rounded-full flex items-center justify-center font-extrabold text-lg md:text-xl text-primary shrink-0 shadow-lg">
+                        GR
+                    </div>
+                    <div>
+                        <div class="text-xl md:text-2xl font-bold text-white">GrowwRelocate</div>
+                        <span class="text-[10px] md:text-xs text-secondary block -mt-1 font-medium">Seamless Moves</span>
+                    </div>
+                </a>
+                
+                <div class="desktop-nav items-center space-x-0 lg:space-x-1">
+                    <div class="dropdown" id="home-dropdown">
+                        <div class="nav-link" onclick="toggleDesktopDropdown('home-dropdown')">
+                            Home <i class="fas fa-chevron-down dropdown-arrow"></i>
+                        </div>
+                        <div class="dropdown-menu">
+                            <a href="index.html" class="dropdown-item">Home 1</a>
+                            <a href="home2.html" class="dropdown-item">Home 2</a>
+                        </div>
+                    </div>
+                    <a href="about.html" class="nav-link">About</a>
+                    <a href="services.html" class="nav-link">Services</a>
+                    <a href="blog.html" class="nav-link">Blog</a>
+                    <a href="pricing.html" class="nav-link">Pricing</a>
+                    <a href="faq.html" class="nav-link">FAQ</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
+                    <div class="dropdown" id="dashboard-dropdown">
+                        <div class="nav-link" onclick="toggleDesktopDropdown('dashboard-dropdown')">
+                            Dashboard <i class="fas fa-chevron-down dropdown-arrow"></i>
+                        </div>
+                        <div class="dropdown-menu">
+                            <a href="user-dashboard.html" class="dropdown-item"><i class="fas fa-user mr-2"></i> User</a>
+                            <a href="admin-dashboard.html" class="dropdown-item"><i class="fas fa-user-shield mr-2"></i> Admin</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="navbar-right-desktop flex items-center gap-2 lg:gap-3">
+                    <button class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center text-white transition-all duration-300 hover:bg-secondary hover:text-primary shrink-0 border-0 cursor-pointer" id="desktop-theme-toggle-btn" title="Toggle Dark/Light Mode">
+                        <i class="fas fa-moon" id="desktop-theme-icon"></i>
+                    </button>
+                    <button class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center text-white transition-all duration-300 hover:bg-secondary hover:text-primary shrink-0 border-0 cursor-pointer" id="desktop-rtl-toggle-btn" title="Toggle RTL">
+                        <i class="fas fa-language"></i>
+                    </button>
+                    <a href="login.html" class="bg-secondary text-primary px-5 py-2.5 rounded-lg font-bold text-sm transition-all hover:bg-white hover:text-primary shadow-lg hover:shadow-xl flex items-center gap-2">
+                        <i class="fas fa-user"></i> Login
+                    </a>
+                </div>
+                
+                <button id="mobile-menu-btn" class="hidden text-white text-xl cursor-pointer p-2 bg-white/10 rounded-lg w-10 h-10 items-center justify-center mobile-menu-button">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+    
+    <div id="mobile-menu" class="mobile-menu fixed top-0 left-0 w-full h-full bg-[#1E293B] z-[9999] overflow-y-auto">
+        <div class="p-6">
+            <div class="flex justify-between items-center mb-8">
+                <a href="index.html" class="flex items-center gap-3">
+                    <div class="w-12 h-12 bg-secondary rounded-full flex items-center justify-center font-extrabold text-xl text-primary">GR</div>
+                    <div>
+                        <span class="text-2xl font-bold text-white">GrowwRelocate</span>
+                        <span class="text-xs text-secondary block -mt-1">Seamless Moves</span>
+                    </div>
+                </a>
+                <div class="flex items-center gap-3">
+                    <a href="login.html" class="bg-secondary text-primary w-10 h-10 rounded-full flex items-center justify-center font-bold transition-all hover:bg-white" title="Login">
+                        <i class="fas fa-user"></i>
+                    </a>
+                    <button id="close-mobile-menu" class="text-white text-3xl transition-transform active:scale-90"><i class="fas fa-times"></i></button>
+                </div>
+            </div>
+            
+            <div class="space-y-2">
+                <div>
+                    <button id="mobile-home-link" class="flex items-center justify-between w-full text-white text-lg font-medium py-3 no-underline cursor-pointer border-0 bg-transparent" onclick="toggleMobileDropdown('home-mobile')">
+                        <span><i class="fas fa-home mr-2 text-secondary"></i> Home</span>
+                        <i class="fas fa-chevron-down dropdown-arrow text-gray-400"></i>
+                    </button>
+                    <div id="home-mobile" class="mobile-dropdown-content">
+                        <a href="index.html" class="block text-gray-300 py-2.5 mobile-link transition-all duration-300 hover:text-secondary hover:pl-2.5">Home 1</a>
+                        <a href="home2.html" class="block text-gray-300 py-2.5 mobile-link transition-all duration-300 hover:text-secondary hover:pl-2.5">Home 2</a>
+                    </div>
+                </div>
+                <a href="about.html" class="flex items-center justify-between w-full text-white text-lg font-medium py-3 no-underline mobile-link"><span><i class="fas fa-info-circle mr-2 text-secondary"></i> About</span></a>
+                <a href="services.html" class="flex items-center justify-between w-full text-white text-lg font-medium py-3 no-underline mobile-link"><span><i class="fas fa-truck mr-2 text-secondary"></i> Services</span></a>
+                <a href="blog.html" class="flex items-center justify-between w-full text-white text-lg font-medium py-3 no-underline mobile-link"><span><i class="fas fa-rss mr-2 text-secondary"></i> Blog</span></a>
+                <a href="pricing.html" class="flex items-center justify-between w-full text-white text-lg font-medium py-3 no-underline mobile-link"><span><i class="fas fa-tags mr-2 text-secondary"></i> Pricing</span></a>
+                <a href="faq.html" class="flex items-center justify-between w-full text-white text-lg font-medium py-3 no-underline mobile-link"><span><i class="fas fa-question-circle mr-2 text-secondary"></i> FAQ</span></a>
+                <a href="contact.html" class="flex items-center justify-between w-full text-white text-lg font-medium py-3 no-underline mobile-link"><span><i class="fas fa-envelope mr-2 text-secondary"></i> Contact</span></a>
+                <div>
+                    <button class="flex items-center justify-between w-full text-white text-lg font-medium py-3 no-underline cursor-pointer border-0 bg-transparent" onclick="toggleMobileDropdown('dashboard-mobile')">
+                        <span><i class="fas fa-tachometer-alt mr-2 text-secondary"></i> Dashboard</span>
+                        <i class="fas fa-chevron-down dropdown-arrow text-gray-400"></i>
+                    </button>
+                    <div id="dashboard-mobile" class="mobile-dropdown-content">
+                        <a href="user-dashboard.html" class="block text-gray-300 py-2.5 mobile-link transition-all duration-300 hover:text-secondary hover:pl-2.5">User Dashboard</a>
+                        <a href="admin-dashboard.html" class="block text-gray-300 py-2.5 mobile-link transition-all duration-300 hover:text-secondary hover:pl-2.5">Admin Dashboard</a>
+                    </div>
+                </div>
+
+                <div class="pt-6 mt-6 border-t border-gray-700">
+                    <p class="text-gray-400 text-sm font-semibold mb-4">SETTINGS</p>
+                    <div class="bg-white/5 rounded-lg p-3 flex items-center justify-between cursor-pointer transition-all duration-300 hover:bg-white/10 mb-3" id="mobile-theme-toggle">
+                        <div class="flex items-center"><i class="fas fa-moon text-white text-lg mr-3" id="mobile-theme-icon"></i><span class="text-white font-medium">Dark Mode</span></div>
+                        <div class="w-12 h-6 bg-gray-600 rounded-full relative"><div class="theme-switch-dot w-5 h-5 bg-white rounded-full absolute top-0.5 left-0.5 transition-all"></div></div>
+                    </div>
+                    <div class="bg-white/5 rounded-lg p-3 flex items-center justify-between cursor-pointer transition-all duration-300 hover:bg-white/10 mb-3" id="mobile-rtl-toggle">
+                        <div class="flex items-center"><i class="fas fa-language text-white text-lg mr-3"></i><span class="text-white font-medium">RTL Mode</span></div>
+                        <div class="w-12 h-6 bg-gray-600 rounded-full relative"><div class="rtl-switch-dot w-5 h-5 bg-white rounded-full absolute top-0.5 left-0.5 transition-all"></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="min-h-[100vh] bg-primary pt-[120px] pb-16 flex items-center relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-full h-full opacity-10 pointer-events-none">
+            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <path fill="#F59E0B" d="M42.7,-73.2C55.9,-67.1,67.6,-57.8,76.4,-46.3C85.2,-34.8,91.1,-21.1,89.9,-7.7C88.7,5.7,80.4,18.8,71.1,30.3C61.8,41.8,51.5,51.7,40.1,59.9C28.7,68.1,16.2,74.6,2.9,70.1C-10.4,65.6,-24.5,50.1,-37.8,38.6C-51.1,27.1,-63.6,19.6,-69.3,8.7C-75,-2.2,-73.9,-16.5,-66.2,-28.5C-58.5,-40.5,-44.2,-50.2,-30.2,-55.8C-16.2,-61.4,-2.5,-62.9,9.9,-78.2L42.7,-73.2Z" transform="translate(100 100)" />
+            </svg>
+        </div>
+
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="fade-in-up">
+                    <div class="inline-block bg-white/10 text-secondary px-4 py-2 rounded-full text-sm font-bold mb-6 border border-white/20">
+                        <i class="fas fa-bolt mr-2"></i> Fast & Secure Moving
+                    </div>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black mb-6 leading-tight text-white">
+                        Move Without <br> <span class="gradient-text">The Mess.</span>
+                    </h1>
+                    <p class="text-lg md:text-xl mb-8 opacity-80 text-gray-300 max-w-lg">
+                        Get an instant quote and book your move in minutes. We handle the heavy lifting while you handle the excitement.
+                    </p>
+                    
+                    </div>
+
+                <div class="bg-card-theme p-6 md:p-8 rounded-3xl shadow-2xl border-t-8 border-secondary fade-in-up" style="animation-delay: 0.2s;">
+                    <h3 class="text-2xl font-bold mb-2 text-heading-theme">Get Instant Estimate</h3>
+                    <p class="text-body-theme text-sm mb-6 opacity-80">Fill in the details to check availability.</p>
+                    
+                    <form class="space-y-4">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-body-theme opacity-70 mb-1">From Zip</label>
+                                <input type="text" placeholder="10001" class="w-full bg-theme-alt border border-theme rounded-lg px-4 py-3 text-heading-theme focus:outline-none focus:ring-2 focus:ring-secondary">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-body-theme opacity-70 mb-1">To Zip</label>
+                                <input type="text" placeholder="90210" class="w-full bg-theme-alt border border-theme rounded-lg px-4 py-3 text-heading-theme focus:outline-none focus:ring-2 focus:ring-secondary">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-body-theme opacity-70 mb-1">Moving Date</label>
+                            <input type="date" class="w-full bg-theme-alt border border-theme rounded-lg px-4 py-3 text-heading-theme focus:outline-none focus:ring-2 focus:ring-secondary">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-body-theme opacity-70 mb-1">Move Size</label>
+                            <select class="w-full bg-theme-alt border border-theme rounded-lg px-4 py-3 text-heading-theme focus:outline-none focus:ring-2 focus:ring-secondary">
+                                <option>Studio Apartment</option>
+                                <option>1 Bedroom Home</option>
+                                <option>2 Bedroom Home</option>
+                                <option>3+ Bedroom Home</option>
+                                <option>Office Space</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="w-full bg-secondary text-primary font-bold py-4 rounded-lg text-lg hover:brightness-110 transition-all shadow-lg mt-2">
+                            Calculate Price <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-10 bg-theme-alt border-y border-theme">
+        <div class="container mx-auto px-4">
+            <p class="text-center text-sm font-bold text-body-theme opacity-50 mb-6 uppercase tracking-widest">Trusted by leading companies</p>
+            <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+                <i class="fab fa-amazon text-4xl md:text-5xl text-heading-theme"></i>
+                <i class="fab fa-google text-4xl md:text-5xl text-heading-theme"></i>
+                <i class="fab fa-airbnb text-4xl md:text-5xl text-heading-theme"></i>
+                <i class="fab fa-uber text-4xl md:text-5xl text-heading-theme"></i>
+                <i class="fab fa-microsoft text-4xl md:text-5xl text-heading-theme"></i>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-theme-main">
+        <div class="container mx-auto px-4">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold mb-6 text-heading-theme">We Handle Everything, <span class="text-secondary">You Relax</span></h2>
+                <p class="text-lg text-body-theme opacity-80">
+                    Forget the cardboard cuts and heavy lifting. Our "White Glove" service means you don't lift a finger until you're waving goodbye.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-card-theme p-8 rounded-2xl border border-theme shadow-lg hover:-translate-y-2 transition-transform duration-300">
+                    <div class="w-16 h-16 bg-green-100 text-green-600 rounded-2xl flex items-center justify-center text-3xl mb-6">
+                        <i class="fas fa-couch"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-heading-theme">Furniture Protection</h3>
+                    <p class="text-body-theme opacity-75">We wrap every piece of furniture in protective padding. scratches? Never heard of them.</p>
+                </div>
+                <div class="bg-card-theme p-8 rounded-2xl border border-theme shadow-lg hover:-translate-y-2 transition-transform duration-300">
+                    <div class="w-16 h-16 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center text-3xl mb-6">
+                        <i class="fas fa-box-open"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-heading-theme">Expert Packing</h3>
+                    <p class="text-body-theme opacity-75">From delicate china to bulky gym equipment, we have specialized boxes for everything.</p>
+                </div>
+                <div class="bg-card-theme p-8 rounded-2xl border border-theme shadow-lg hover:-translate-y-2 transition-transform duration-300">
+                    <div class="w-16 h-16 bg-purple-100 text-purple-600 rounded-2xl flex items-center justify-center text-3xl mb-6">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-heading-theme">On-Time Guarantee</h3>
+                    <p class="text-body-theme opacity-75">We respect your time. If we are late, we pay you for every minute of delay.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-theme-alt overflow-hidden">
+        <div class="container mx-auto px-4">
+            <div class="w-full max-w-5xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4 text-heading-theme">Track Your Move Live</h2>
+                    <p class="text-lg text-body-theme opacity-80 max-w-2xl mx-auto">
+                        Our customer dashboard gives you a visual timeline of your move. Know exactly where your stuff is, 24/7.
+                    </p>
+                </div>
+                
+                <div class="bg-card-theme p-8 md:p-12 rounded-2xl shadow-xl border border-theme">
+                    <div class="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
+                        <h4 class="font-bold text-heading-theme text-xl">Current Status: <span class="text-secondary">In Transit</span></h4>
+                        <div class="text-sm text-body-theme opacity-75 font-medium"><i class="far fa-clock mr-1"></i> Updated 5 mins ago</div>
+                    </div>
+                    
+                    <div class="relative mb-12 mt-8">
+                        <div class="timeline-bar"></div>
+                        <div class="timeline-progress"></div>
+                        
+                        <div class="flex justify-between relative">
+                            <div class="timeline-step flex flex-col items-center">
+                                <div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center border-4 border-white shadow-md z-10">
+                                    <i class="fas fa-check text-xs"></i>
+                                </div>
+                                <span class="text-xs font-bold mt-2 text-heading-theme uppercase tracking-wider">Booked</span>
+                            </div>
+                            <div class="timeline-step flex flex-col items-center">
+                                <div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center border-4 border-white shadow-md z-10">
+                                    <i class="fas fa-check text-xs"></i>
+                                </div>
+                                <span class="text-xs font-bold mt-2 text-heading-theme uppercase tracking-wider">Packed</span>
+                            </div>
+                            <div class="timeline-step flex flex-col items-center">
+                                <div class="w-10 h-10 rounded-full bg-secondary text-primary flex items-center justify-center border-4 border-white shadow-md z-10 animate-bounce">
+                                    <i class="fas fa-truck text-xs"></i>
+                                </div>
+                                <span class="text-xs font-bold mt-2 text-secondary uppercase tracking-wider">Transit</span>
+                            </div>
+                            <div class="timeline-step flex flex-col items-center opacity-50">
+                                <div class="w-10 h-10 rounded-full bg-gray-300 text-gray-500 flex items-center justify-center border-4 border-white shadow-md z-10">
+                                    <i class="fas fa-home text-xs"></i>
+                                </div>
+                                <span class="text-xs font-bold mt-2 text-body-theme uppercase tracking-wider">Arrival</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center justify-between p-6 bg-theme-alt rounded-xl border border-theme">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-full bg-gray-200 overflow-hidden flex items-center justify-center">
+                                <i class="fas fa-user text-gray-400 text-xl"></i>
+                            </div>
+                            <div>
+                                <div class="text-base font-bold text-heading-theme">Driver: Tom Philips</div>
+                                <div class="text-xs text-body-theme">Volvo FH16 Truck • License #8829</div>
+                            </div>
+                        </div>
+                        <button class="text-secondary hover:text-primary transition font-bold text-sm border border-secondary px-4 py-2 rounded-lg hover:bg-secondary">
+                            <i class="fas fa-phone-alt mr-2"></i> Call Driver
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-theme-main border-t border-theme">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-5xl font-bold mb-4 text-heading-theme">The <span class="text-secondary">Groww</span> Difference</h2>
+                <p class="text-body-theme opacity-80 text-lg">Why settle for less when you can move with the best?</p>
+            </div>
+            
+            <div class="overflow-x-auto pb-4">
+                <div class="min-w-[600px] md:min-w-full bg-card-theme rounded-2xl shadow-2xl border border-theme overflow-hidden mx-auto max-w-5xl">
+                    <div class="grid grid-cols-3 bg-primary text-white p-6 md:p-8 font-bold text-lg md:text-xl">
+                        <div class="flex items-center">Feature</div>
+                        <div class="flex items-center justify-center opacity-60 font-medium">Average Movers</div>
+                        <div class="flex items-center justify-center text-secondary"><i class="fas fa-crown mr-3"></i>GrowwRelocate</div>
+                    </div>
+                    
+                    <div class="grid grid-cols-3 p-6 border-b border-theme items-center text-body-theme hover:bg-theme-alt transition duration-300 group">
+                        <div class="font-bold text-heading-theme text-base md:text-lg"><i class="fas fa-tag w-8 text-secondary"></i>Pricing Model</div>
+                        <div class="text-center opacity-80">Hourly estimates (Hidden fees)</div>
+                        <div class="text-center font-bold text-heading-theme bg-secondary/10 py-2 rounded-lg group-hover:bg-secondary/20 transition">Guaranteed Flat Rate</div>
+                    </div>
+                    
+                    <div class="grid grid-cols-3 p-6 border-b border-theme items-center text-body-theme hover:bg-theme-alt transition duration-300 group">
+                        <div class="font-bold text-heading-theme text-base md:text-lg"><i class="fas fa-satellite w-8 text-secondary"></i>Tracking</div>
+                        <div class="text-center opacity-80">Phone calls only</div>
+                        <div class="text-center font-bold text-heading-theme bg-secondary/10 py-2 rounded-lg group-hover:bg-secondary/20 transition">Real-time GPS App</div>
+                    </div>
+                    
+                    <div class="grid grid-cols-3 p-6 border-b border-theme items-center text-body-theme hover:bg-theme-alt transition duration-300 group">
+                        <div class="font-bold text-heading-theme text-base md:text-lg"><i class="fas fa-shield-cat w-8 text-secondary"></i>Insurance</div>
+                        <div class="text-center opacity-80">$0.60 per pound (Basic)</div>
+                        <div class="text-center font-bold text-heading-theme bg-secondary/10 py-2 rounded-lg group-hover:bg-secondary/20 transition">Full Value Protection</div>
+                    </div>
+                    
+                    <div class="grid grid-cols-3 p-6 items-center text-body-theme hover:bg-theme-alt transition duration-300 group">
+                        <div class="font-bold text-heading-theme text-base md:text-lg"><i class="fas fa-calendar-check w-8 text-secondary"></i>Cancellation</div>
+                        <div class="text-center opacity-80">Strict penalties</div>
+                        <div class="text-center font-bold text-heading-theme bg-secondary/10 py-2 rounded-lg group-hover:bg-secondary/20 transition">Free up to 48hrs</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-10">
+                <a href="#quote" class="inline-block bg-secondary text-primary font-bold py-4 px-10 rounded-full text-lg shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                    Experience the Difference
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-primary text-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-12">
+                <div class="md:w-1/2">
+                    <div class="w-20 h-20 bg-secondary rounded-full flex items-center justify-center text-primary text-4xl mb-8 shadow-[0_0_30px_rgba(245,158,11,0.5)]">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h2 class="text-3xl md:text-5xl font-bold mb-6 text-white">Full Value Protection</h2>
+                    <p class="text-xl text-gray-300 mb-8 leading-relaxed">
+                        Accidents are rare, but we are prepared. Unlike standard movers who offer 60 cents per pound, we offer Full Value Protection plans. If it breaks, we fix it or replace it.
+                    </p>
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-3"><i class="fas fa-check-circle text-secondary text-xl"></i> <span>$1 Million Liability Coverage</span></li>
+                        <li class="flex items-center gap-3"><i class="fas fa-check-circle text-secondary text-xl"></i> <span>Background Checked Staff</span></li>
+                        <li class="flex items-center gap-3"><i class="fas fa-check-circle text-secondary text-xl"></i> <span>Secure Climate-Controlled Trucks</span></li>
+                    </ul>
+                </div>
+                <div class="md:w-1/2 bg-white/5 p-8 rounded-3xl border border-white/10 backdrop-blur-sm">
+                    <h3 class="text-2xl font-bold mb-6 text-secondary">Our Safety Record</h3>
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between mb-2 text-sm font-bold">
+                                <span>Damage-Free Moves</span>
+                                <span>99.2%</span>
+                            </div>
+                            <div class="w-full bg-white/10 rounded-full h-3">
+                                <div class="bg-secondary h-3 rounded-full" style="width: 99.2%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2 text-sm font-bold">
+                                <span>On-Time Arrival</span>
+                                <span>98.5%</span>
+                            </div>
+                            <div class="w-full bg-white/10 rounded-full h-3">
+                                <div class="bg-secondary h-3 rounded-full" style="width: 98.5%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2 text-sm font-bold">
+                                <span>Customer Satisfaction</span>
+                                <span>4.9/5</span>
+                            </div>
+                            <div class="w-full bg-white/10 rounded-full h-3">
+                                <div class="bg-secondary h-3 rounded-full" style="width: 98%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+  <footer class="bg-primary text-white py-12 md:py-16">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-12">
+                <div>
+                    <a href="index.html" class="flex items-center gap-3 mb-6 no-underline">
+                        <div class="w-12 h-12 bg-secondary rounded-full flex items-center justify-center font-extrabold text-xl text-primary shrink-0">
+                            GR
+                        </div>
+                        <div>
+                            <span class="text-xl md:text-2xl font-bold text-white block">GrowwRelocate</span>
+                            <span class="text-xs text-secondary block -mt-1 font-semibold">Seamless Moves</span>
+                        </div>
+                    </a>
+                    <p class="opacity-80 mb-6 text-sm md:text-base text-gray-300">
+                        Making relocation easy, reliable, and stress-free for families and businesses.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-white/10 text-white rounded-full flex items-center justify-center hover:bg-secondary hover:text-primary transition"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 bg-white/10 text-white rounded-full flex items-center justify-center hover:bg-secondary hover:text-primary transition"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="w-10 h-10 bg-white/10 text-white rounded-full flex items-center justify-center hover:bg-secondary hover:text-primary transition"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg md:text-xl font-bold mb-6 text-secondary">Quick Links</h3>
+                    <ul class="space-y-3 text-sm md:text-base">
+                        <li><a href="index.html" class="text-white hover:text-secondary transition font-medium">Home</a></li>
+                        <li><a href="about.html" class="text-white hover:text-secondary transition font-medium">About</a></li>
+                        <li><a href="services.html" class="text-white hover:text-secondary transition font-medium">Services</a></li>
+                        <li><a href="contact.html" class="text-white hover:text-secondary transition font-medium">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg md:text-xl font-bold mb-6 text-secondary">Support</h3>
+                    <ul class="space-y-3 text-sm md:text-base">
+                        <li><a href="faq.html" class="text-gray-300 hover:text-secondary transition">FAQs</a></li>
+                        <li><a href="contact.html" class="text-gray-300 hover:text-secondary transition">Contact Us</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-secondary transition">Claims Policy</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-secondary transition">Moving Guide</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg md:text-xl font-bold mb-6 text-secondary">Get Estimate</h3>
+                    <p class="opacity-80 mb-4 text-sm md:text-base text-gray-300">Enter your email to start a free quote.</p>
+                    <form class="space-y-3">
+                        <input type="email" placeholder="Your email" class="w-full px-4 py-3 rounded-lg text-primary bg-white focus:outline-none focus:ring-2 focus:ring-secondary text-sm md:text-base" required>
+                        <button type="submit" class="w-full bg-secondary text-primary px-4 py-3 rounded-lg font-bold hover:bg-white hover:text-primary transition text-sm md:text-base">
+                            Start Quote
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-sm md:text-base text-white">
+                <p class="mb-4 md:mb-0 text-white font-medium">&copy; 2026 GrowwRelocate. All rights reserved.</p>
+                <div class="flex flex-wrap justify-center gap-4 md:gap-6">
+                    <a href="#" class="hover:text-secondary transition text-gray-300">Privacy Policy</a>
+                    <a href="#" class="hover:text-secondary transition text-gray-300">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <button id="scroll-top" class="fixed bottom-6 right-6 md:bottom-8 md:right-8 w-10 h-10 md:w-12 md:h-12 bg-secondary text-primary rounded-full shadow-lg hidden hover:bg-white transition z-50">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Toggle Logic
+        const desktopThemeToggleBtn = document.getElementById('desktop-theme-toggle-btn');
+        const desktopThemeIcon = document.getElementById('desktop-theme-icon');
+        const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+        const mobileThemeIcon = document.getElementById('mobile-theme-icon');
+        const htmlElement = document.documentElement;
+        
+        // Initialize Theme
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        htmlElement.setAttribute('data-theme', currentTheme);
+        if (currentTheme === 'dark') {
+            htmlElement.classList.add('dark');
+            if (desktopThemeIcon) desktopThemeIcon.classList.replace('fa-moon', 'fa-sun');
+            if (mobileThemeIcon) {
+                mobileThemeIcon.classList.replace('fa-moon', 'fa-sun');
+                const dot = document.querySelector('.theme-switch-dot');
+                if(dot) {
+                    dot.style.transform = 'translateX(24px)';
+                    dot.parentElement.style.backgroundColor = '#F59E0B'; 
+                }
+            }
+        }
+
+        function toggleTheme() {
+            const isDark = htmlElement.getAttribute('data-theme') === 'dark';
+            const newTheme = isDark ? 'light' : 'dark';
+            htmlElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            if (newTheme === 'dark') {
+                htmlElement.classList.add('dark');
+            } else {
+                htmlElement.classList.remove('dark');
+            }
+            if (desktopThemeIcon) desktopThemeIcon.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+            if (mobileThemeIcon) {
+                mobileThemeIcon.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+                const dot = document.querySelector('.theme-switch-dot');
+                const bg = dot.parentElement;
+                if (newTheme === 'dark') {
+                    dot.style.transform = 'translateX(24px)';
+                    bg.style.backgroundColor = '#F59E0B';
+                } else {
+                    dot.style.transform = 'translateX(0)';
+                    bg.style.backgroundColor = '#6b7280';
+                }
+            }
+        }
+
+        if (desktopThemeToggleBtn) desktopThemeToggleBtn.addEventListener('click', toggleTheme);
+        if (mobileThemeToggle) mobileThemeToggle.addEventListener('click', toggleTheme);
+        
+        // RTL Logic
+        const desktopRtlToggleBtn = document.getElementById('desktop-rtl-toggle-btn');
+        const mobileRtlToggle = document.getElementById('mobile-rtl-toggle');
+        const currentDir = localStorage.getItem('direction') || 'ltr';
+        htmlElement.setAttribute('dir', currentDir);
+        if (currentDir === 'rtl' && mobileRtlToggle) {
+            const dot = document.querySelector('.rtl-switch-dot');
+            if(dot) { dot.style.transform = 'translateX(24px)'; dot.parentElement.style.backgroundColor = '#F59E0B'; }
+        }
+        function toggleRTL() {
+            const direction = htmlElement.getAttribute('dir') === 'rtl' ? 'ltr' : 'rtl';
+            htmlElement.setAttribute('dir', direction);
+            localStorage.setItem('direction', direction);
+            if (mobileRtlToggle) {
+                const dot = document.querySelector('.rtl-switch-dot');
+                const bg = dot.parentElement;
+                if (direction === 'rtl') { dot.style.transform = 'translateX(24px)'; bg.style.backgroundColor = '#F59E0B'; } 
+                else { dot.style.transform = 'translateX(0)'; bg.style.backgroundColor = '#6b7280'; }
+            }
+        }
+        if (desktopRtlToggleBtn) desktopRtlToggleBtn.addEventListener('click', toggleRTL);
+        if (mobileRtlToggle) mobileRtlToggle.addEventListener('click', toggleRTL);
+
+        // Menus
+        function toggleDesktopDropdown(id) {
+            document.querySelectorAll('.dropdown').forEach(d => { if(d.id !== id) d.classList.remove('active'); });
+            document.getElementById(id).classList.toggle('active');
+        }
+        function toggleMobileDropdown(id) { document.getElementById(id).classList.toggle('active'); }
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.dropdown')) { document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active')); }
+        });
+
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMobileMenu = document.getElementById('close-mobile-menu');
+        if(mobileMenuBtn) mobileMenuBtn.addEventListener('click', () => mobileMenu.classList.add('active'));
+        if(closeMobileMenu) closeMobileMenu.addEventListener('click', () => mobileMenu.classList.remove('active'));
+
+        // ACTIVE LINK LOGIC
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+            
+            // Standard Link Active Logic
+            document.querySelectorAll('.nav-link, .dropdown-item, .mobile-link').forEach(link => {
+                const href = link.getAttribute('href');
+                if (href === currentPath) {
+                    link.classList.add('active');
+                    const parentDropdown = link.closest('.dropdown');
+                    if(parentDropdown) {
+                        parentDropdown.querySelector('.nav-link').classList.add('active');
+                    }
+                    
+                    // --- CHANGED HERE: Removed auto-expand for mobile dropdowns ---
+                    // The line below was forcing the menu open. I have removed it.
+                    // const parentMobileDropdown = link.closest('.mobile-dropdown-content');
+                    // if(parentMobileDropdown) {
+                    //     parentMobileDropdown.classList.add('active'); 
+                    // }
+                }
+            });
+
+            // Mobile Home Button Active State Logic (Only on Home/Index)
+            if (currentPath === 'index.html' || currentPath === '' || currentPath === 'home2.html') {
+                const mobileHomeBtn = document.getElementById('mobile-home-link');
+                if (mobileHomeBtn) {
+                    // Adds the secondary (orange) color to the text inside the button
+                    mobileHomeBtn.classList.add('text-secondary'); 
+                }
+            }
+        });
+
+        // Scroll Top
+        const scrollTopBtn = document.getElementById('scroll-top');
+        window.addEventListener('scroll', () => scrollTopBtn.classList.toggle('hidden', window.scrollY <= 300));
+        scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+        window.addEventListener('resize', () => { if(window.innerWidth >= 1280) mobileMenu.classList.remove('active'); });
+    </script>
+</body>
+</html>

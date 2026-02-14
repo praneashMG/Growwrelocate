@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Page Not Found - GrowwFurniture">
+    <title>404 - Page Not Found | GrowwFurniture</title>
+    
+    <link rel="icon" type="image/x-icon" href="Images/growwpark_logo.ico">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            darkMode: ['class', '[data-theme="dark"]'],
+            theme: {
+                extend: {
+                    colors: {
+                        "gf-charcoal": "#1C1C1C", 
+                        "gf-walnut": "#8B5E3C", 
+                        "gf-walnut-dark": "#6d4a30",
+                        "gf-beige": "#F3ECDC",
+                        "gf-white": "#FFFFFF",
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Root Variables matching your Contact Page */
+        :root {
+            --primary-charcoal: #1C1C1C; 
+            --secondary-walnut: #8B5E3C; 
+            --accent-beige: #F3ECDC;     
+            --neutral-white: #FFFFFF;    
+        }
+        
+        [data-theme="dark"] {
+            --accent-beige: #121212;      
+            --neutral-white: #1E1E1E;     
+            --text-main: #F3ECDC;         
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--accent-beige);
+            color: #1C1C1C;
+            transition: all 0.3s ease;
+            overflow-x: hidden;
+        }
+
+        [data-theme="dark"] body {
+            background-color: #121212;
+            color: #F3ECDC;
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease forwards;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col relative">
+
+    <div class="fixed top-6 right-6 z-50 flex items-center gap-3">
+        <button id="themeToggle" class="w-12 h-12 flex items-center justify-center bg-white dark:bg-gf-charcoal border border-gray-200 dark:border-gray-700 hover:border-gf-walnut dark:hover:border-gf-walnut rounded-full shadow-lg transition-all group">
+            <i class="fas fa-sun text-xl text-gf-walnut hidden dark:inline-block group-hover:rotate-90 transition-transform duration-500"></i>
+            <i class="fas fa-moon text-xl text-gf-walnut dark:hidden group-hover:-rotate-12 transition-transform duration-300"></i>
+        </button>
+
+        <button id="rtlToggle" class="w-12 h-12 flex items-center justify-center bg-white dark:bg-gf-charcoal border border-gray-200 dark:border-gray-700 hover:border-gf-walnut dark:hover:border-gf-walnut rounded-full shadow-lg transition-all" title="Toggle RTL">
+            <i class="fas fa-exchange-alt text-xl text-gf-walnut"></i>
+        </button>
+    </div>
+
+    <div class="flex-grow flex items-center justify-center px-4 py-12">
+        <div class="max-w-3xl w-full text-center">
+            
+            <h3 class="text-2xl font-bold mb-4 fade-in text-gf-charcoal dark:text-white tracking-wide uppercase" style="animation-delay: 0.1s;">GrowwFurniture</h3>
+
+            <div class="float-animation fade-in relative" style="animation-delay: 0.2s;">
+                <h1 class="text-9xl md:text-[13rem] font-black text-gf-walnut leading-none select-none opacity-90">
+                    404
+                </h1>
+                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white/10 dark:text-white/5 pointer-events-none">
+                    <i class="fas fa-couch text-[8rem] md:text-[10rem]"></i>
+                </div>
+            </div>
+
+            <h2 class="text-3xl md:text-5xl font-bold mt-6 mb-4 fade-in text-gf-charcoal dark:text-white" style="animation-delay: 0.3s;">
+                Nothing to see here.
+            </h2>
+
+            <p class="text-lg text-gray-600 dark:text-gray-400 mb-10 fade-in max-w-lg mx-auto" style="animation-delay: 0.4s;">
+                The page you're looking for seems to have gotten lost in the cushions. Let's get you back to designing your dream home.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 fade-in" style="animation-delay: 0.6s;">
+                <a href="index.html" class="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-gf-walnut hover:bg-gf-walnut-dark text-white font-bold px-8 py-4 rounded-xl transition-all transform hover:-translate-y-1 shadow-xl hover:shadow-2xl">
+                    <i class="fas fa-home"></i>
+                    <span>Back to Home</span>
+                </a>
+
+                <a href="contact.html" class="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-white dark:bg-gf-charcoal hover:bg-gray-50 dark:hover:bg-[#252525] text-gf-charcoal dark:text-white font-bold px-8 py-4 rounded-xl transition-all transform hover:-translate-y-1 shadow-lg border border-gray-200 dark:border-gray-700">
+                    <i class="fas fa-headset text-gf-walnut"></i>
+                    <span>Contact Support</span>
+                </a>
+            </div>
+
+            <div class="mt-16 pt-8 border-t border-gray-300 dark:border-gray-700 fade-in" style="animation-delay: 0.7s;">
+                <p class="text-sm font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-500 mb-6">Explore Our Collections</p>
+                
+                <div class="flex flex-wrap items-center justify-center gap-6 text-base font-medium">
+                    <a href="shop.html" class="flex items-center gap-2 text-gf-charcoal dark:text-white hover:text-gf-walnut dark:hover:text-gf-walnut transition-colors group">
+                        <span class="w-8 h-8 rounded-full bg-gf-walnut/10 flex items-center justify-center group-hover:bg-gf-walnut group-hover:text-white transition-colors"><i class="fas fa-chair text-sm"></i></span>
+                        Shop
+                    </a>
+                    
+                    <a href="categories.html" class="flex items-center gap-2 text-gf-charcoal dark:text-white hover:text-gf-walnut dark:hover:text-gf-walnut transition-colors group">
+                        <span class="w-8 h-8 rounded-full bg-gf-walnut/10 flex items-center justify-center group-hover:bg-gf-walnut group-hover:text-white transition-colors"><i class="fas fa-th-large text-sm"></i></span>
+                        Categories
+                    </a>
+                    
+                    <a href="faq.html" class="flex items-center gap-2 text-gf-charcoal dark:text-white hover:text-gf-walnut dark:hover:text-gf-walnut transition-colors group">
+                        <span class="w-8 h-8 rounded-full bg-gf-walnut/10 flex items-center justify-center group-hover:bg-gf-walnut group-hover:text-white transition-colors"><i class="fas fa-question text-sm"></i></span>
+                        FAQ
+                    </a>
+                    
+                    <a href="user-dashboard.html" class="flex items-center gap-2 text-gf-charcoal dark:text-white hover:text-gf-walnut dark:hover:text-gf-walnut transition-colors group">
+                        <span class="w-8 h-8 rounded-full bg-gf-walnut/10 flex items-center justify-center group-hover:bg-gf-walnut group-hover:text-white transition-colors"><i class="fas fa-user text-sm"></i></span>
+                        My Account
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    
+    <div class="py-6 text-center text-sm text-gray-500 dark:text-gray-600 fade-in" style="animation-delay: 0.8s;">
+        © 2026 GrowwFurniture. Premium Interiors.
+    </div>
+
+    <script>
+        const htmlElement = document.documentElement;
+
+        // ✅ THEME TOGGLE LOGIC
+        function applyTheme(theme) {
+            htmlElement.setAttribute('data-theme', theme);
+            if (theme === 'dark') {
+                htmlElement.classList.add('dark');
+            } else {
+                htmlElement.classList.remove('dark');
+            }
+            localStorage.setItem('theme', theme);
+        }
+
+        // Initialize Theme
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        applyTheme(savedTheme);
+
+        // Toggle Event
+        document.getElementById('themeToggle').addEventListener('click', () => {
+            const currentTheme = htmlElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            applyTheme(newTheme);
+        });
+
+        // ✅ RTL TOGGLE LOGIC
+        document.getElementById('rtlToggle').addEventListener('click', () => {
+            const currentDir = htmlElement.getAttribute('dir') || 'ltr';
+            const newDir = currentDir === 'rtl' ? 'ltr' : 'rtl';
+            htmlElement.setAttribute('dir', newDir);
+            localStorage.setItem('direction', newDir);
+        });
+
+        // Initialize RTL
+        if (localStorage.getItem('direction') === 'rtl') {
+            htmlElement.setAttribute('dir', 'rtl');
+        }
+
+        console.log('✅ GrowwFurniture 404 Loaded');
+    </script>
+
+</body>
+</html>
