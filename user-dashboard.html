@@ -171,9 +171,14 @@
                 <a href="#" class="block text-white text-lg font-medium py-3">Support Ticket</a>
                 
                 <div class="pt-6 mt-6 border-t border-gray-700">
-                    <div class="flex items-center justify-between text-white mb-6" id="mobile-theme-toggle">
+                    <div class="flex items-center justify-between text-white mb-6 cursor-pointer" id="mobile-theme-toggle">
                         <span><i class="fas fa-moon mr-2"></i> Dark Mode</span>
                         <div class="w-12 h-6 bg-gray-600 rounded-full relative"><div class="theme-switch-dot w-5 h-5 bg-white rounded-full absolute top-0.5 left-0.5 transition-all"></div></div>
+                    </div>
+
+                    <div class="flex items-center justify-between text-white mb-6 cursor-pointer" id="mobile-rtl-toggle">
+                        <span><i class="fas fa-language mr-2"></i> RTL Mode</span>
+                        <div class="w-12 h-6 bg-gray-600 rounded-full relative"><div class="rtl-switch-dot w-5 h-5 bg-white rounded-full absolute top-0.5 left-0.5 transition-all"></div></div>
                     </div>
                     
                     <a href="login.html" class="block w-full bg-red-500/20 text-center text-red-400 font-bold py-3 rounded-lg hover:bg-red-500 hover:text-white transition">
@@ -400,10 +405,12 @@
     <script>
         const htmlElement = document.documentElement;
 
-        // --- Theme Logic (Matches Homepage) ---
+        // --- Theme Logic ---
         function applyTheme(theme) {
             htmlElement.setAttribute('data-theme', theme);
             localStorage.setItem('theme', theme);
+            
+            // Toggle Switch Visuals
             const dot = document.querySelector('.theme-switch-dot');
             const bg = dot ? dot.parentElement : null;
             
@@ -435,7 +442,7 @@
         // Init Theme
         applyTheme(localStorage.getItem('theme') || 'light');
         
-        // Listeners
+        // Theme Listeners
         const desktopToggle = document.getElementById('desktop-theme-toggle-btn');
         if(desktopToggle) {
             desktopToggle.addEventListener('click', () => applyTheme(htmlElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'));
@@ -447,17 +454,51 @@
         }
 
         // --- RTL Logic ---
-        const rtlBtn = document.getElementById('desktop-rtl-toggle-btn');
-        if(rtlBtn) {
-            rtlBtn.addEventListener('click', () => {
-                const dir = htmlElement.getAttribute('dir') === 'rtl' ? 'ltr' : 'rtl';
-                htmlElement.setAttribute('dir', dir);
-                localStorage.setItem('direction', dir);
-            });
+        function toggleRTL() {
+            const currentDir = htmlElement.getAttribute('dir');
+            const newDir = currentDir === 'rtl' ? 'ltr' : 'rtl';
+            
+            htmlElement.setAttribute('dir', newDir);
+            localStorage.setItem('direction', newDir);
+
+            // Toggle Switch Visuals (Mobile)
+            const dot = document.querySelector('.rtl-switch-dot');
+            const bg = dot ? dot.parentElement : null;
+            
+            if(newDir === 'rtl') {
+                if(bg) {
+                    dot.style.transform = 'translateX(24px)';
+                    bg.style.backgroundColor = '#F59E0B';
+                }
+            } else {
+                if(bg) {
+                    dot.style.transform = 'translateX(0)';
+                    bg.style.backgroundColor = '#4b5563';
+                }
+            }
         }
+
         // Init RTL
-        const currentDir = localStorage.getItem('direction') || 'ltr';
-        htmlElement.setAttribute('dir', currentDir);
+        const savedDir = localStorage.getItem('direction') || 'ltr';
+        htmlElement.setAttribute('dir', savedDir);
+        // Set initial visual state for mobile toggle
+        const rtlDot = document.querySelector('.rtl-switch-dot');
+        const rtlBg = rtlDot ? rtlDot.parentElement : null;
+        if(savedDir === 'rtl' && rtlBg) {
+             rtlDot.style.transform = 'translateX(24px)';
+             rtlBg.style.backgroundColor = '#F59E0B';
+        }
+
+        // RTL Listeners
+        const desktopRtlBtn = document.getElementById('desktop-rtl-toggle-btn');
+        if(desktopRtlBtn) {
+            desktopRtlBtn.addEventListener('click', toggleRTL);
+        }
+
+        const mobileRtlBtn = document.getElementById('mobile-rtl-toggle');
+        if(mobileRtlBtn) {
+            mobileRtlBtn.addEventListener('click', toggleRTL);
+        }
 
         // --- Menu Logic ---
         const mobileMenu = document.getElementById('mobile-menu');
