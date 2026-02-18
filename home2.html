@@ -532,51 +532,51 @@
         </div>
     </section>
 
-    <section class="py-20 bg-primary text-white">
+    <section class="py-20 bg-secondary text-primary">
         <div class="container mx-auto px-4">
             <div class="flex flex-col md:flex-row items-center justify-between gap-12">
                 <div class="md:w-1/2">
-                    <div class="w-20 h-20 bg-secondary rounded-full flex items-center justify-center text-primary text-4xl mb-8 shadow-[0_0_30px_rgba(245,158,11,0.5)]">
+                    <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center text-secondary text-4xl mb-8 shadow-xl">
                         <i class="fas fa-shield-alt"></i>
                     </div>
-                    <h2 class="text-3xl md:text-5xl font-bold mb-6 text-white">Full Value Protection</h2>
-                    <p class="text-xl text-gray-300 mb-8 leading-relaxed">
+                    <h2 class="text-3xl md:text-5xl font-bold mb-6 text-primary">Full Value Protection</h2>
+                    <p class="text-xl text-primary/80 mb-8 leading-relaxed font-medium">
                         Accidents are rare, but we are prepared. Unlike standard movers who offer 60 cents per pound, we offer Full Value Protection plans. If it breaks, we fix it or replace it.
                     </p>
-                    <ul class="space-y-4">
-                        <li class="flex items-center gap-3"><i class="fas fa-check-circle text-secondary text-xl"></i> <span>$1 Million Liability Coverage</span></li>
-                        <li class="flex items-center gap-3"><i class="fas fa-check-circle text-secondary text-xl"></i> <span>Background Checked Staff</span></li>
-                        <li class="flex items-center gap-3"><i class="fas fa-check-circle text-secondary text-xl"></i> <span>Secure Climate-Controlled Trucks</span></li>
+                    <ul class="space-y-4 font-semibold text-primary">
+                        <li class="flex items-center gap-3"><i class="fas fa-check-circle text-white text-xl"></i> <span>$1 Million Liability Coverage</span></li>
+                        <li class="flex items-center gap-3"><i class="fas fa-check-circle text-white text-xl"></i> <span>Background Checked Staff</span></li>
+                        <li class="flex items-center gap-3"><i class="fas fa-check-circle text-white text-xl"></i> <span>Secure Climate-Controlled Trucks</span></li>
                     </ul>
                 </div>
-                <div class="md:w-1/2 bg-white/5 p-8 rounded-3xl border border-white/10 backdrop-blur-sm">
-                    <h3 class="text-2xl font-bold mb-6 text-secondary">Our Safety Record</h3>
+                <div class="md:w-1/2 bg-white/25 p-8 rounded-3xl border border-white/40 backdrop-blur-md shadow-lg">
+                    <h3 class="text-2xl font-bold mb-6 text-primary">Our Safety Record</h3>
                     <div class="space-y-6">
                         <div>
-                            <div class="flex justify-between mb-2 text-sm font-bold">
+                            <div class="flex justify-between mb-2 text-sm font-bold text-primary">
                                 <span>Damage-Free Moves</span>
                                 <span>99.2%</span>
                             </div>
-                            <div class="w-full bg-white/10 rounded-full h-3">
-                                <div class="bg-secondary h-3 rounded-full" style="width: 99.2%"></div>
+                            <div class="w-full bg-white/40 rounded-full h-3">
+                                <div class="bg-primary h-3 rounded-full" style="width: 99.2%"></div>
                             </div>
                         </div>
                         <div>
-                            <div class="flex justify-between mb-2 text-sm font-bold">
+                            <div class="flex justify-between mb-2 text-sm font-bold text-primary">
                                 <span>On-Time Arrival</span>
                                 <span>98.5%</span>
                             </div>
-                            <div class="w-full bg-white/10 rounded-full h-3">
-                                <div class="bg-secondary h-3 rounded-full" style="width: 98.5%"></div>
+                            <div class="w-full bg-white/40 rounded-full h-3">
+                                <div class="bg-primary h-3 rounded-full" style="width: 98.5%"></div>
                             </div>
                         </div>
                         <div>
-                            <div class="flex justify-between mb-2 text-sm font-bold">
+                            <div class="flex justify-between mb-2 text-sm font-bold text-primary">
                                 <span>Customer Satisfaction</span>
                                 <span>4.9/5</span>
                             </div>
-                            <div class="w-full bg-white/10 rounded-full h-3">
-                                <div class="bg-secondary h-3 rounded-full" style="width: 98%"></div>
+                            <div class="w-full bg-white/40 rounded-full h-3">
+                                <div class="bg-primary h-3 rounded-full" style="width: 98%"></div>
                             </div>
                         </div>
                     </div>
@@ -758,13 +758,6 @@
                     if(parentDropdown) {
                         parentDropdown.querySelector('.nav-link').classList.add('active');
                     }
-                    
-                    // --- CHANGED HERE: Removed auto-expand for mobile dropdowns ---
-                    // The line below was forcing the menu open. I have removed it.
-                    // const parentMobileDropdown = link.closest('.mobile-dropdown-content');
-                    // if(parentMobileDropdown) {
-                    //     parentMobileDropdown.classList.add('active'); 
-                    // }
                 }
             });
 

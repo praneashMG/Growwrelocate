@@ -59,12 +59,21 @@
     </style>
     
     <style>
-        /* FIXED HEIGHT LAYOUT */
+        /* BASE STYLES */
         html, body {
-            height: 100vh;
-            overflow: hidden;
             margin: 0;
             padding: 0;
+            /* Default to auto height for better scrolling on mobile/tablet/small laptops */
+            height: auto;
+            overflow-x: hidden;
+        }
+
+        /* LARGE DESKTOP ONLY (Above 1024px): Fixed height to prevent scrollbar if content fits */
+        @media (min-width: 1025px) {
+            html, body {
+                height: 100vh;
+                overflow: hidden;
+            }
         }
 
         @keyframes fadeInUp {
@@ -84,54 +93,47 @@
         .animate-float {
             animation: float 3s ease-in-out infinite;
         }
-
-        /* Responsive Fixes */
-        @media (max-width: 1024px) {
-            html, body { height: auto; overflow-y: auto; }
-            section { height: auto !important; padding-bottom: 2rem; }
-        }
     </style>
 </head>
 <body class="font-sans bg-bg text-primary transition-colors duration-300 dark:bg-bg-dark dark:text-gray-200">
 
-    <nav class="bg-primary shadow-lg flex-shrink-0 relative z-50 h-16">
+    <nav class="bg-primary shadow-lg flex-shrink-0 relative z-50 h-[70px]">
         <div class="max-w-[1400px] mx-auto px-4 h-full flex justify-between items-center">
 
             <a href="index.html" class="flex items-center gap-3 no-underline transition-transform duration-300 hover:scale-105">
-                <div class="w-9 h-9 bg-secondary rounded-full flex items-center justify-center font-extrabold text-lg text-primary shrink-0 shadow-lg border-2 border-primary">
+                <div class="w-10 h-10 bg-secondary rounded-full flex items-center justify-center font-extrabold text-lg text-primary shrink-0 shadow-lg border-2 border-primary">
                     GR
                 </div>
                 <div class="flex flex-col">
-                    <span class="text-lg font-bold text-white leading-tight">GrowwRelocate</span>
-                    <span class="text-[10px] text-secondary font-medium">Seamless Moves</span>
+                    <span class="text-xl font-bold text-white leading-tight">GrowwRelocate</span>
+                    <span class="text-[10px] text-secondary font-medium block -mt-0.5">Seamless Moves</span>
                 </div>
             </a>
 
             <div class="flex items-center gap-2">
-                <button id="themeToggle" class="w-9 h-9 bg-white/10 rounded-lg flex items-center justify-center text-white hover:bg-secondary hover:text-primary transition-colors" title="Toggle Dark Mode">
+                <button id="themeToggle" class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center text-white hover:bg-secondary hover:text-primary transition-colors" title="Toggle Dark Mode">
                     <i class="fas fa-sun text-sm hidden dark:inline-block"></i>
                     <i class="fas fa-moon text-sm dark:hidden"></i>
                 </button>
 
-                <button id="rtlToggle" class="w-9 h-9 bg-white/10 rounded-lg flex items-center justify-center text-white hover:bg-secondary hover:text-primary transition-colors" title="Toggle RTL">
-                    <i class="fas fa-language text-sm"></i>
+                <button id="rtlToggle" class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center text-white hover:bg-secondary hover:text-primary transition-colors" title="Toggle RTL">
+                    <i class="fas fa-language text-lg"></i>
                 </button>
             </div>
 
         </div>
     </nav>
 
-    <section class="flex items-center justify-center px-4 bg-bg dark:bg-bg-dark pt-8 lg:pt-0" style="height: calc(100vh - 4rem);">
+    <section class="flex items-center justify-center px-4 bg-bg dark:bg-bg-dark min-h-[calc(100vh-70px)] py-12 xl:py-0">
         
-        <div class="max-w-4xl w-full grid lg:grid-cols-2 bg-white dark:bg-card-dark rounded-2xl overflow-hidden shadow-2xl border border-gray-200 dark:border-slate-700 animate-fade-in-up" style="max-height: 90vh;">
+        <div class="max-w-4xl w-full grid lg:grid-cols-2 bg-white dark:bg-card-dark rounded-2xl overflow-hidden shadow-2xl border border-gray-200 dark:border-slate-700 animate-fade-in-up" style="max-height: 900px;">
             
-            <div class="hidden lg:flex bg-primary text-white p-8 flex-col justify-center items-center relative overflow-hidden">
+            <div class="hidden lg:flex bg-primary text-white p-8 flex-col justify-center items-center relative overflow-hidden h-full min-h-[500px]">
                 <div class="absolute top-[-50px] left-[-50px] w-64 h-64 rounded-full bg-secondary/20 blur-3xl animate-float"></div>
                 <div class="absolute bottom-[-50px] right-[-50px] w-80 h-80 rounded-full bg-secondary/10 blur-3xl animate-float" style="animation-delay: 2s"></div>
 
                 <div class="relative z-10 text-center mb-8">
                     <div class="mb-6 inline-flex items-center justify-center w-24 h-24 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 animate-float">
-                         
                         <i class="fas fa-truck-loading text-4xl text-secondary"></i>
                     </div>
                     
@@ -172,7 +174,7 @@
                 </div>
             </div>
 
-            <div class="p-6 sm:p-8 flex flex-col overflow-hidden h-full">
+            <div class="p-6 sm:p-8 flex flex-col justify-center h-full">
                 <div class="mb-6 text-center flex-shrink-0">
                     <h2 class="text-2xl font-black text-primary dark:text-white mb-1">Welcome Back</h2>
                     <p class="text-gray-500 dark:text-gray-400 text-sm">Manage your moves and quotes</p>
@@ -187,7 +189,7 @@
                     </button>
                 </div>
 
-                <div class="flex-1 overflow-y-auto pr-1">
+                <div class="flex-1">
                     
                     <div id="loginForm" class="space-y-4">
                         <form id="loginFormElement" class="space-y-4">

@@ -387,6 +387,7 @@
             </div>
         </div>
     </section>
+
     <section class="py-16 md:py-20 bg-theme-main">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
@@ -394,14 +395,16 @@
                 <h2 class="text-3xl md:text-4xl font-bold text-heading-theme mt-2">What Our Customers Say</h2>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-card-theme p-8 rounded-2xl shadow-lg border border-theme transition-transform duration-300 hover:-translate-y-2">
-                    <div class="flex text-secondary mb-4 gap-1">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-card-theme p-8 rounded-2xl shadow-lg border border-theme transition-transform duration-300 hover:-translate-y-2 h-full flex flex-col">
+                    <div>
+                        <div class="flex text-secondary mb-4 gap-1">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="text-body-theme italic mb-6 leading-relaxed">"The local moving team was incredible. They wrapped all my furniture and didn't scratch a single wall. Highly recommended!"</p>
                     </div>
-                    <p class="text-body-theme italic mb-6 leading-relaxed">"The local moving team was incredible. They wrapped all my furniture and didn't scratch a single wall. Highly recommended!"</p>
-                    <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 rounded-full flex items-center justify-center bg-theme-alt border border-theme">
+                    <div class="flex items-center gap-4 mt-auto">
+                        <div class="w-12 h-12 rounded-full flex items-center justify-center bg-theme-alt border border-theme flex-shrink-0">
                             <i class="fas fa-user text-gray-400"></i>
                         </div>
                         <div>
@@ -411,29 +414,33 @@
                     </div>
                 </div>
 
-                <div class="bg-card-theme p-8 rounded-2xl shadow-lg border border-theme transition-transform duration-300 hover:-translate-y-2">
-                    <div class="flex text-secondary mb-4 gap-1">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                <div class="bg-card-theme p-8 rounded-2xl shadow-lg border border-theme transition-transform duration-300 hover:-translate-y-2 h-full flex flex-col">
+                    <div>
+                        <div class="flex text-secondary mb-4 gap-1">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <p class="text-body-theme italic mb-6 leading-relaxed">"Moving our office was a logistical nightmare until GrowwRelocate stepped in. They worked over the weekend so we lost zero business hours."</p>
                     </div>
-                    <p class="text-body-theme italic mb-6 leading-relaxed">"Moving our office was a logistical nightmare until GrowwRelocate stepped in. They worked over the weekend so we lost zero business hours."</p>
-                    <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 rounded-full flex items-center justify-center bg-theme-alt border border-theme">
+                    <div class="flex items-center gap-4 mt-auto">
+                        <div class="w-12 h-12 rounded-full flex items-center justify-center bg-theme-alt border border-theme flex-shrink-0">
                             <i class="fas fa-user text-gray-400"></i>
                         </div>
                         <div>
                             <h4 class="font-bold text-heading-theme">Michael Chen</h4>
-                            <span class="text-xs text-body-theme opacity-70">Corporate Relocation</span>
+                            <span class="text-xs text-body-theme opacity-70">Corporate Relocate</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="bg-card-theme p-8 rounded-2xl shadow-lg border border-theme transition-transform duration-300 hover:-translate-y-2">
-                    <div class="flex text-secondary mb-4 gap-1">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                <div class="bg-card-theme p-8 rounded-2xl shadow-lg border border-theme transition-transform duration-300 hover:-translate-y-2 h-full flex flex-col">
+                    <div>
+                        <div class="flex text-secondary mb-4 gap-1">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="text-body-theme italic mb-6 leading-relaxed">"Storage facilities are top notch. Climate controlled and very secure. I left my antique furniture there for 6 months with no issues."</p>
                     </div>
-                    <p class="text-body-theme italic mb-6 leading-relaxed">"Storage facilities are top notch. Climate controlled and very secure. I left my antique furniture there for 6 months with no issues."</p>
-                    <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 rounded-full flex items-center justify-center bg-theme-alt border border-theme">
+                    <div class="flex items-center gap-4 mt-auto">
+                        <div class="w-12 h-12 rounded-full flex items-center justify-center bg-theme-alt border border-theme flex-shrink-0">
                             <i class="fas fa-user text-gray-400"></i>
                         </div>
                         <div>
@@ -446,33 +453,33 @@
         </div>
     </section>
 
-    <section class="py-16 bg-primary text-white relative overflow-hidden">
-        <div class="absolute top-0 right-0 w-64 h-64 bg-secondary opacity-5 rounded-bl-full pointer-events-none"></div>
-        <div class="absolute bottom-0 left-0 w-64 h-64 bg-secondary opacity-5 rounded-tr-full pointer-events-none"></div>
+    <section class="py-16 bg-secondary text-primary relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-64 h-64 bg-white opacity-20 rounded-bl-full pointer-events-none"></div>
+        <div class="absolute bottom-0 left-0 w-64 h-64 bg-white opacity-20 rounded-tr-full pointer-events-none"></div>
 
         <div class="container mx-auto px-4 relative z-10">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
                 <div class="space-y-2">
-                    <div class="text-4xl md:text-5xl font-black text-secondary">5k+</div>
-                    <p class="text-sm md:text-base text-gray-300 uppercase tracking-wider font-semibold">Moves Completed</p>
+                    <div class="text-4xl md:text-5xl font-black text-white">5k+</div>
+                    <p class="text-sm md:text-base text-primary/80 uppercase tracking-wider font-bold">Moves Completed</p>
                 </div>
                 <div class="space-y-2">
-                    <div class="text-4xl md:text-5xl font-black text-secondary">98%</div>
-                    <p class="text-sm md:text-base text-gray-300 uppercase tracking-wider font-semibold">Client Satisfaction</p>
+                    <div class="text-4xl md:text-5xl font-black text-white">98%</div>
+                    <p class="text-sm md:text-base text-primary/80 uppercase tracking-wider font-bold">Client Satisfaction</p>
                 </div>
                 <div class="space-y-2">
-                    <div class="text-4xl md:text-5xl font-black text-secondary">15+</div>
-                    <p class="text-sm md:text-base text-gray-300 uppercase tracking-wider font-semibold">Years Experience</p>
+                    <div class="text-4xl md:text-5xl font-black text-white">15+</div>
+                    <p class="text-sm md:text-base text-primary/80 uppercase tracking-wider font-bold">Years Experience</p>
                 </div>
                 <div class="space-y-2">
-                    <div class="text-4xl md:text-5xl font-black text-secondary">50+</div>
-                    <p class="text-sm md:text-base text-gray-300 uppercase tracking-wider font-semibold">Cities Covered</p>
+                    <div class="text-4xl md:text-5xl font-black text-white">50+</div>
+                    <p class="text-sm md:text-base text-primary/80 uppercase tracking-wider font-bold">Cities Covered</p>
                 </div>
             </div>
         </div>
     </section>
 
- <footer class="bg-primary text-white py-12 md:py-16">
+    <footer class="bg-primary text-white py-12 md:py-16">
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-12">
                 <div>
